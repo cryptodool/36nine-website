@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
     
-    <!-- Inline Font Awesome to avoid CDN issues -->
+    <!-- Use reliable CDN for Font Awesome -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
     
     <!-- Inline JavaScript to ensure it runs -->
@@ -61,6 +61,35 @@
                 });
             }
             
+            // Create particles in the background
+            const particlesContainer = document.querySelector('.particles-background');
+            if (particlesContainer) {
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    const size = Math.random() * 5 + 1;
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    const duration = Math.random() * 20 + 10;
+                    const delay = Math.random() * 5;
+                    
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+                    particle.style.left = posX + '%';
+                    particle.style.top = posY + '%';
+                    particle.style.animation = `float ${duration}s linear infinite`;
+                    particle.style.animationDelay = delay + 's';
+                    particle.style.opacity = Math.random() * 0.5 + 0.1;
+                    particle.style.background = 'var(--primary-color)';
+                    particle.style.borderRadius = '50%';
+                    particle.style.position = 'absolute';
+                    particle.style.boxShadow = '0 0 10px var(--primary-color)';
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
                 anchor.addEventListener('click', function(e) {
@@ -80,6 +109,23 @@
                     }
                 });
             });
+
+            // Chat widget functionality
+            const chatToggle = document.querySelector('.chat-toggle');
+            const chatContainer = document.querySelector('.chat-container');
+            const chatClose = document.querySelector('.chat-close');
+            
+            if (chatToggle && chatContainer && chatClose) {
+                chatToggle.addEventListener('click', function() {
+                    chatContainer.classList.toggle('active');
+                    chatToggle.classList.toggle('active');
+                });
+                
+                chatClose.addEventListener('click', function() {
+                    chatContainer.classList.remove('active');
+                    chatToggle.classList.remove('active');
+                });
+            }
         });
     </script>
 </head>
@@ -217,10 +263,84 @@
         </div>
     </section>
 
-    <!-- Footer Section - Simplified for this fix -->
+    <!-- Expertise Section -->
+    <section id="expertise" class="expertise-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Expertise</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Business Intelligence</h3>
+                    <p>Transform data into actionable insights with our AI-powered analytics solutions</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h3>AI Strategy Development</h3>
+                    <p>Craft a comprehensive AI roadmap aligned with your business objectives</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>AI Implementation</h3>
+                    <p>Seamlessly integrate AI solutions into your existing systems and processes</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Innovation Labs</h3>
+                    <p>Explore cutting-edge AI concepts in our experimental playground</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chat Widget -->
+    <div class="ai-chat-widget">
+        <div class="chat-toggle">
+            <i class="fas fa-comment-dots"></i>
+            <span class="notification-dot"></span>
+        </div>
+        <div class="chat-container">
+            <div class="chat-header">
+                <img src="img/36nine-logo-small.svg" alt="36nine.ai" class="chat-logo">
+                <h3>36nine.ai Assistant</h3>
+                <div class="chat-close"><i class="fas fa-times"></i></div>
+            </div>
+            <div class="chat-messages">
+                <div class="message bot">
+                    <div class="message-content">Hello! I'm your 36nine.ai assistant. How can I help you unlock your AI potential today?</div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message here...">
+                <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
     <footer>
         <div class="container">
-            <p>© 2025 36nine.ai - Unlocking AI Potential</p>
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="img/36nine-logo.svg" alt="36nine.ai">
+                    </div>
+                    <p>Unlocking AI Potential through the principles of 3, 6, and 9 – inspired by Tesla's vision of the keys to the universe.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 36nine.ai - Unlocking AI Potential</p>
+            </div>
         </div>
     </footer>
 </body>
