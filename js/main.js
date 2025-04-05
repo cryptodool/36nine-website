@@ -32,30 +32,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const mobileNav = document.querySelector('.mobile-nav');
     
-    mobileNavToggle.addEventListener('click', function() {
-        this.classList.toggle('active');
-        mobileNav.classList.toggle('active');
-        
-        if (this.classList.contains('active')) {
-            this.querySelector('span:nth-child(1)').style.transform = 'rotate(45deg) translate(5px, 5px)';
-            this.querySelector('span:nth-child(2)').style.opacity = '0';
-            this.querySelector('span:nth-child(3)').style.transform = 'rotate(-45deg) translate(5px, -5px)';
-        } else {
-            this.querySelector('span:nth-child(1)').style.transform = 'none';
-            this.querySelector('span:nth-child(2)').style.opacity = '1';
-            this.querySelector('span:nth-child(3)').style.transform = 'none';
-        }
-    });
+    if (mobileNavToggle) {
+        mobileNavToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            
+            if (this.classList.contains('active')) {
+                this.querySelector('span:nth-child(1)').style.transform = 'rotate(45deg) translate(5px, 5px)';
+                this.querySelector('span:nth-child(2)').style.opacity = '0';
+                this.querySelector('span:nth-child(3)').style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                this.querySelector('span:nth-child(1)').style.transform = 'none';
+                this.querySelector('span:nth-child(2)').style.opacity = '1';
+                this.querySelector('span:nth-child(3)').style.transform = 'none';
+            }
+        });
+    }
     
     // Mobile Navigation Links
     const mobileNavLinks = document.querySelectorAll('.mobile-nav .nav-link');
     mobileNavLinks.forEach(link => {
         link.addEventListener('click', () => {
             mobileNav.classList.remove('active');
-            mobileNavToggle.classList.remove('active');
-            mobileNavToggle.querySelector('span:nth-child(1)').style.transform = 'none';
-            mobileNavToggle.querySelector('span:nth-child(2)').style.opacity = '1';
-            mobileNavToggle.querySelector('span:nth-child(3)').style.transform = 'none';
+            if (mobileNavToggle) {
+                mobileNavToggle.classList.remove('active');
+                mobileNavToggle.querySelector('span:nth-child(1)').style.transform = 'none';
+                mobileNavToggle.querySelector('span:nth-child(2)').style.opacity = '1';
+                mobileNavToggle.querySelector('span:nth-child(3)').style.transform = 'none';
+            }
         });
     });
     
@@ -97,41 +101,43 @@ document.addEventListener('DOMContentLoaded', function() {
     const cursor = document.querySelector('.cursor');
     const cursorDot = document.querySelector('.cursor-dot');
     
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        
-        cursorDot.style.left = e.clientX + 'px';
-        cursorDot.style.top = e.clientY + 'px';
-    });
-    
-    document.addEventListener('mousedown', () => {
-        cursor.style.width = '25px';
-        cursor.style.height = '25px';
-        cursor.style.borderColor = 'var(--primary-color)';
-    });
-    
-    document.addEventListener('mouseup', () => {
-        cursor.style.width = '30px';
-        cursor.style.height = '30px';
-        cursor.style.borderColor = 'var(--primary-color)';
-    });
-    
-    document.querySelectorAll('a, button, input, textarea, .btn').forEach(element => {
-        element.addEventListener('mouseover', () => {
-            cursor.style.width = '50px';
-            cursor.style.height = '50px';
-            cursor.style.borderColor = 'var(--primary-color)';
-            cursor.style.background = 'rgba(0, 212, 255, 0.1)';
+    if (cursor && cursorDot) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
         });
         
-        element.addEventListener('mouseleave', () => {
+        document.addEventListener('mousedown', () => {
+            cursor.style.width = '25px';
+            cursor.style.height = '25px';
+            cursor.style.borderColor = 'var(--primary-color)';
+        });
+        
+        document.addEventListener('mouseup', () => {
             cursor.style.width = '30px';
             cursor.style.height = '30px';
             cursor.style.borderColor = 'var(--primary-color)';
-            cursor.style.background = 'transparent';
         });
-    });
+        
+        document.querySelectorAll('a, button, input, textarea, .btn').forEach(element => {
+            element.addEventListener('mouseover', () => {
+                cursor.style.width = '50px';
+                cursor.style.height = '50px';
+                cursor.style.borderColor = 'var(--primary-color)';
+                cursor.style.background = 'rgba(0, 212, 255, 0.1)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.style.width = '30px';
+                cursor.style.height = '30px';
+                cursor.style.borderColor = 'var(--primary-color)';
+                cursor.style.background = 'transparent';
+            });
+        });
+    }
     
     // Terminal Text Animation
     function initializeAnimations() {
@@ -190,13 +196,19 @@ document.addEventListener('DOMContentLoaded', function() {
     if (chatToggle && chatContainer && chatClose) {
         // Initialize notification
         setTimeout(() => {
-            document.querySelector('.notification-dot').style.display = 'block';
+            const notificationDot = document.querySelector('.notification-dot');
+            if (notificationDot) {
+                notificationDot.style.display = 'block';
+            }
         }, 5000);
         
         chatToggle.addEventListener('click', () => {
             chatContainer.classList.toggle('active');
             chatToggle.classList.toggle('active');
-            document.querySelector('.notification-dot').style.display = 'none';
+            const notificationDot = document.querySelector('.notification-dot');
+            if (notificationDot) {
+                notificationDot.style.display = 'none';
+            }
             
             if (chatContainer.classList.contains('active')) {
                 chatInput.focus();
