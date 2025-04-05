@@ -3,742 +3,1411 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="36nine.ai - Unlocking AI Potential inspired by Tesla's 3, 6, 9 philosophy. We guide your AI journey through Creation, Harmony, and Fulfillment.">
-    <meta name="keywords" content="36nine.ai, artificial intelligence, AI solutions, Tesla philosophy, AI implementation, business AI">
+    <meta name="description" content="36nine.ai - Unlocking AI potential through the principles of 3, 6, and 9. We transform businesses with innovative AI solutions inspired by Tesla's vision.">
+    <meta name="keywords" content="AI, artificial intelligence, Tesla, 3 6 9, business intelligence, AI strategy, technology">
+    <meta name="author" content="36nine.ai">
     <meta property="og:title" content="36nine.ai - Unlocking AI Potential">
-    <meta property="og:description" content="AI solutions inspired by Tesla's 3, 6, 9 philosophy. Transforming businesses through intelligent technology.">
-    <meta property="og:image" content="img/36nine-logo.svg">
+    <meta property="og:description" content="We transform businesses with innovative AI solutions inspired by Tesla's vision of 3, 6, and 9 as keys to the universe.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://36nine.ai">
     <title>36nine.ai - Unlocking AI Potential</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
-    <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-    
-    <!-- Ensure consistent font usage with additional styling -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@firacode/webfont@6.2.0/distr/fira_code.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <style>
-        /* Ensure consistent terminal font usage throughout */
-        body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, select, span, div {
-            font-family: var(--font-mono) !important;
+        /* Custom Styles */
+        :root {
+            --primary-neon: #00ffff;
+            --primary-blue: #0099ff;
+            --dark-blue: #001220;
+            --darker-blue: #000a14;
+            --circuit-color: rgba(0, 255, 255, 0.2);
         }
         
-        /* Enhanced AI chat styling */
-        .ai-chat-widget {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 99;
+        /* Base Styles */
+        html {
+            scroll-behavior: smooth;
         }
         
-        .chat-toggle {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, var(--primary-color), var(--6-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        body {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--darker-blue);
+            color: #ffffff;
             position: relative;
-            z-index: 2;
-            font-size: 24px;
-            color: var(--darker-bg);
-            transition: all 0.3s ease;
+            overflow-x: hidden;
         }
         
-        .chat-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 5px 25px rgba(0, 212, 255, 0.5);
-        }
-        
-        .chat-container {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            width: 350px;
-            background: var(--darker-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
-            transform: scale(0);
-            transform-origin: bottom right;
-            transition: all 0.3s ease;
-            opacity: 0;
-            border: 1px solid var(--primary-color);
-            max-height: 500px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .chat-toggle.active + .chat-container {
-            transform: scale(1);
-            opacity: 1;
-        }
-        
-        .chat-header {
-            background: var(--secondary-color);
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
-        }
-        
-        .chat-logo {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-        }
-        
-        .chat-header h3 {
-            color: var(--light-text);
-            font-size: 18px;
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fira Code', monospace;
             font-weight: 600;
-            flex: 1;
-            margin: 0;
         }
         
-        .chat-close {
-            color: var(--medium-text);
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s ease;
+        /* Neon Effect */
+        .neon-text {
+            color: #fff;
+            text-shadow: 0 0 5px var(--primary-neon), 
+                         0 0 10px var(--primary-neon),
+                         0 0 20px var(--primary-blue), 
+                         0 0 30px var(--primary-blue);
         }
         
-        .chat-close:hover {
-            color: var(--primary-color);
+        .neon-box {
+            box-shadow: 0 0 5px var(--primary-neon), 
+                       0 0 10px var(--primary-neon),
+                       0 0 20px var(--primary-blue), 
+                       inset 0 0 10px rgba(0, 255, 255, 0.5);
         }
         
-        .chat-messages {
-            height: 350px;
-            padding: 15px;
-            overflow-y: auto;
-            flex: 1;
+        /* Circuit Background */
+        .circuit-background {
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
         }
         
-        .message {
-            margin-bottom: 15px;
-            display: flex;
+        .circuit-background::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25px 25px, var(--circuit-color) 2px, transparent 0),
+                linear-gradient(to right, var(--circuit-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--circuit-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: -25px -25px;
+            z-index: -1;
+            opacity: 0.15;
         }
         
-        .message.bot {
-            justify-content: flex-start;
+        /* Terminal Effect */
+        .terminal {
+            background-color: rgba(0, 10, 20, 0.8);
+            border: 1px solid var(--primary-blue);
+            border-radius: 5px;
+            padding: 20px;
+            position: relative;
         }
         
-        .message.user {
-            justify-content: flex-end;
+        .terminal::before {
+            content: "$ ";
+            color: var(--primary-neon);
         }
         
-        .message-content {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 15px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        
-        .message.bot .message-content {
-            background: rgba(0, 212, 255, 0.1);
-            color: var(--light-text);
-            border-bottom-left-radius: 0;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-        }
-        
-        .message.user .message-content {
-            background: var(--primary-color);
-            color: var(--secondary-color);
-            border-bottom-right-radius: 0;
-        }
-        
-        .chat-input {
-            display: flex;
-            border-top: 1px solid rgba(0, 212, 255, 0.2);
+        .terminal-input {
+            background-color: rgba(0, 10, 20, 0.8);
+            border: 1px solid var(--primary-blue);
+            color: white;
+            font-family: 'Fira Code', monospace;
             padding: 10px;
-        }
-        
-        .chat-input input {
-            flex: 1;
-            padding: 10px 15px;
-            background: rgba(5, 10, 20, 0.7);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 20px;
-            color: var(--light-text);
-            font-family: var(--font-mono);
-            font-size: 14px;
+            width: 100%;
             outline: none;
         }
         
-        .chat-input input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+        .terminal-input:focus {
+            box-shadow: 0 0 5px var(--primary-neon);
         }
         
-        .send-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
-            border: none;
-            border-radius: 50%;
-            margin-left: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--secondary-color);
-            cursor: pointer;
+        /* Button Styles */
+        .btn-neon {
+            background-color: transparent;
+            border: 1px solid var(--primary-neon);
+            color: var(--primary-neon);
+            padding: 10px 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
             transition: all 0.3s ease;
         }
         
-        .send-btn:hover {
-            background: var(--6-color);
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+        .btn-neon:hover {
+            color: var(--darker-blue);
+        }
+        
+        .btn-neon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-neon);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn-neon:hover::before {
+            left: 0;
+        }
+        
+        /* Logo Animation */
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+        
+        .logo-pulse {
+            animation: pulse 3s infinite;
+        }
+        
+        /* Number Highlight */
+        .number-highlight {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+            color: white;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        /* Chat Interface */
+        #chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 450px;
+            background-color: rgba(0, 18, 32, 0.9);
+            border: 1px solid var(--primary-blue);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            transform: translateY(410px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 153, 255, 0.5);
+        }
+        
+        #chat-container.open {
+            transform: translateY(0);
+        }
+        
+        #chat-header {
+            padding: 10px 15px;
+            background-color: rgba(0, 153, 255, 0.2);
+            border-bottom: 1px solid var(--primary-blue);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        
+        .chat-message {
+            margin-bottom: 10px;
+            max-width: 80%;
+            padding: 8px 12px;
+            border-radius: 15px;
+        }
+        
+        .user-message {
+            background-color: rgba(0, 153, 255, 0.3);
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+        
+        .ai-message {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 153, 255, 0.3);
+            margin-right: auto;
+            border-bottom-left-radius: 0;
+        }
+        
+        #chat-input-container {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid var(--primary-blue);
+        }
+        
+        #chat-input {
+            flex-grow: 1;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 15px;
+            padding: 8px 15px;
+            color: white;
+            outline: none;
+        }
+        
+        #chat-submit {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Navigation Active State */
+        .nav-active {
+            color: var(--primary-neon);
+            border-bottom: 2px solid var(--primary-neon);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 20px;
+            }
+            
+            #chat-container {
+                width: 300px;
+                right: 10px;
+                bottom: 10px;
+            }
+            
+            #mobile-menu {
+                display: block;
+            }
+            
+            #desktop-menu {
+                display: none;
+            }
+            
+            .mobile-nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--dark-blue);
+                padding: 20px;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+            }
+            
+            .mobile-nav.open {
+                transform: translateY(0);
+            }
         }
 
-        /* Ensure section visibility after loading screen */
-        body.loaded section {
-            opacity: 1;
+        /* Typing animation for chat */
+        .typing-indicator {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .typing-indicator span {
+            height: 5px;
+            width: 5px;
+            margin: 0 1px;
+            background-color: var(--primary-neon);
+            display: block;
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        .typing-indicator span:nth-of-type(1) {
+            animation: typing 1s infinite;
+        }
+
+        .typing-indicator span:nth-of-type(2) {
+            animation: typing 1s 0.33s infinite;
+        }
+
+        .typing-indicator span:nth-of-type(3) {
+            animation: typing 1s 0.66s infinite;
+        }
+
+        @keyframes typing {
+            0%, 100% {
+                opacity: 0.4;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Form styling */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            background-color: rgba(0, 18, 32, 0.8);
+            border: 1px solid var(--primary-blue);
+            color: white;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            font-family: 'Fira Code', monospace;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 2px var(--primary-neon);
+            outline: none;
+        }
+
+        /* Sitemap styling */
+        .sitemap-list {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+
+        .sitemap-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .sitemap-list li::before {
+            content: '├─';
+            position: absolute;
+            left: -1rem;
+            color: var(--primary-blue);
+        }
+
+        .sitemap-list li:last-child::before {
+            content: '└─';
+        }
+
+        /* Playground */
+        .playground-terminal {
+            height: 300px;
+            overflow-y: auto;
+            background-color: rgba(0, 10, 20, 0.95);
+            border: 1px solid var(--primary-blue);
+            font-family: 'Fira Code', monospace;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .playground-terminal::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+        }
+
+        .cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* News card styling */
+        .news-card {
+            background-color: rgba(0, 18, 32, 0.8);
+            border: 1px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 153, 255, 0.3);
+        }
+
+        /* Hide scrollbar but allow scrolling */
+        .clean-scroll::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+
+        .clean-scroll {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
         }
     </style>
-    
-    <!-- Improved JavaScript for more responsive and robust functionality -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("DOM Loaded - Starting initialization");
-            
-            // Loading screen animation
-            const loadingScreen = document.querySelector('.loading-screen');
-            const loadingProgress = document.querySelectorAll('.loading-progress');
-            const body = document.querySelector('body');
-            
-            // Simulate loading progress
-            let progress = 0;
-            const progressInterval = setInterval(() => {
-                progress += 5;
-                if (progress > 100) progress = 100;
-                
-                loadingProgress.forEach(element => {
-                    element.textContent = progress + '%';
-                });
-                
-                if (progress === 100) {
-                    clearInterval(progressInterval);
-                    setTimeout(() => {
-                        loadingScreen.style.opacity = '0';
-                        setTimeout(() => {
-                            loadingScreen.style.display = 'none';
-                            body.classList.add('loaded');
-                            body.style.overflow = 'visible';
-                            initializeAnimations();
-                        }, 500);
-                    }, 500);
-                }
-            }, 200);
-            
-            // Initialize all animations and interactions
-            function initializeAnimations() {
-                console.log("Initializing animations and interactive elements");
-                
-                // Create particles for background
-                createParticles();
-                
-                // Setup navigation highlighting
-                setupNavigation();
-                
-                // Setup mobile navigation
-                setupMobileNav();
-                
-                // Setup AI chat widget
-                setupEnhancedChatWidget();
-                
-                // Setup form submissions
-                setupForms();
-                
-                // Setup custom cursor
-                setupCustomCursor();
-            }
-            
-            // Create particles for background
-            function createParticles() {
-                const particlesContainer = document.querySelector('.particles-background');
-                
-                if (!particlesContainer) return;
-                
-                for (let i = 0; i < 50; i++) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('particle');
-                    
-                    const size = Math.random() * 5 + 1;
-                    const posX = Math.random() * 100;
-                    const posY = Math.random() * 100;
-                    const duration = Math.random() * 20 + 10;
-                    const delay = Math.random() * 5;
-                    
-                    particle.style.width = size + 'px';
-                    particle.style.height = size + 'px';
-                    particle.style.left = posX + '%';
-                    particle.style.top = posY + '%';
-                    particle.style.animation = `float ${duration}s linear infinite`;
-                    particle.style.animationDelay = delay + 's';
-                    particle.style.opacity = Math.random() * 0.5 + 0.1;
-                    particle.style.background = 'var(--primary-color)';
-                    particle.style.borderRadius = '50%';
-                    particle.style.position = 'absolute';
-                    particle.style.boxShadow = '0 0 10px var(--primary-color)';
-                    
-                    particlesContainer.appendChild(particle);
-                }
-            }
-            
-            // Setup navigation highlighting and smooth scrolling
-            function setupNavigation() {
-                // Header Scroll Effect
-                const header = document.querySelector('header');
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 50) {
-                        header.classList.add('scrolled');
-                    } else {
-                        header.classList.remove('scrolled');
-                    }
-                });
-                
-                // Navigation Active State on Scroll
-                window.addEventListener('scroll', () => {
-                    let current = '';
-                    
-                    document.querySelectorAll('section').forEach(section => {
-                        const sectionTop = section.offsetTop - 100;
-                        const sectionHeight = section.clientHeight;
-                        
-                        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                            current = section.getAttribute('id');
-                        }
-                    });
-                    
-                    document.querySelectorAll('.nav-link').forEach(link => {
-                        link.classList.remove('active');
-                        const href = link.getAttribute('href');
-                        if (href === `#${current}`) {
-                            link.classList.add('active');
-                        }
-                    });
-                });
-                
-                // Smooth scrolling for anchor links
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        
-                        const targetId = this.getAttribute('href');
-                        if (targetId === '#') return;
-                        
-                        const targetElement = document.querySelector(targetId);
-                        if (targetElement) {
-                            const offsetTop = targetElement.offsetTop - 80;
-                            
-                            window.scrollTo({
-                                top: offsetTop,
-                                behavior: 'smooth'
-                            });
-                        }
-                    });
-                });
-            }
-            
-            // Setup mobile navigation
-            function setupMobileNav() {
-                const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-                const mobileNav = document.querySelector('.mobile-nav');
-                
-                if (mobileNavToggle && mobileNav) {
-                    mobileNavToggle.addEventListener('click', function() {
-                        this.classList.toggle('active');
-                        mobileNav.classList.toggle('active');
-                        
-                        if (this.classList.contains('active')) {
-                            this.querySelector('span:nth-child(1)').style.transform = 'rotate(45deg) translate(5px, 5px)';
-                            this.querySelector('span:nth-child(2)').style.opacity = '0';
-                            this.querySelector('span:nth-child(3)').style.transform = 'rotate(-45deg) translate(5px, -5px)';
-                        } else {
-                            this.querySelector('span:nth-child(1)').style.transform = 'none';
-                            this.querySelector('span:nth-child(2)').style.opacity = '1';
-                            this.querySelector('span:nth-child(3)').style.transform = 'none';
-                        }
-                    });
-                    
-                    // Close mobile nav when clicking a link
-                    document.querySelectorAll('.mobile-nav .nav-link').forEach(link => {
-                        link.addEventListener('click', () => {
-                            mobileNav.classList.remove('active');
-                            mobileNavToggle.classList.remove('active');
-                            mobileNavToggle.querySelector('span:nth-child(1)').style.transform = 'none';
-                            mobileNavToggle.querySelector('span:nth-child(2)').style.opacity = '1';
-                            mobileNavToggle.querySelector('span:nth-child(3)').style.transform = 'none';
-                        });
-                    });
-                }
-            }
-            
-            // Setup enhanced AI chat widget with more intelligent responses
-            function setupEnhancedChatWidget() {
-                const chatToggle = document.querySelector('.chat-toggle');
-                const chatContainer = document.querySelector('.chat-container');
-                const chatClose = document.querySelector('.chat-close');
-                const chatInput = document.querySelector('.chat-input input');
-                const sendBtn = document.querySelector('.send-btn');
-                const chatMessages = document.querySelector('.chat-messages');
-                
-                if (chatToggle && chatContainer) {
-                    // Initialize notification
-                    setTimeout(() => {
-                        const notificationDot = document.querySelector('.notification-dot');
-                        if (notificationDot) {
-                            notificationDot.style.display = 'block';
-                        }
-                    }, 5000);
-                    
-                    chatToggle.addEventListener('click', () => {
-                        chatContainer.classList.toggle('active');
-                        chatToggle.classList.toggle('active');
-                        const notificationDot = document.querySelector('.notification-dot');
-                        if (notificationDot) {
-                            notificationDot.style.display = 'none';
-                        }
-                        
-                        if (chatInput && chatContainer.classList.contains('active')) {
-                            chatInput.focus();
-                        }
-                    });
-                    
-                    if (chatClose) {
-                        chatClose.addEventListener('click', () => {
-                            chatContainer.classList.remove('active');
-                            chatToggle.classList.remove('active');
-                        });
-                    }
-                    
-                    // Advanced AI-like responses based on keywords
-                    function sendMessage() {
-                        if (!chatInput || !chatMessages) return;
-                        
-                        const message = chatInput.value.trim();
-                        if (message === '') return;
-                        
-                        // Add user message
-                        const userMessage = document.createElement('div');
-                        userMessage.classList.add('message', 'user');
-                        
-                        const userContent = document.createElement('div');
-                        userContent.classList.add('message-content');
-                        userContent.textContent = message;
-                        
-                        userMessage.appendChild(userContent);
-                        chatMessages.appendChild(userMessage);
-                        
-                        chatInput.value = '';
-                        
-                        // Intelligent response based on message content
-                        setTimeout(() => {
-                            const botMessage = document.createElement('div');
-                            botMessage.classList.add('message', 'bot');
-                            
-                            const botContent = document.createElement('div');
-                            botContent.classList.add('message-content');
-                            
-                            // Choose response based on keywords in the message
-                            const lowerMsg = message.toLowerCase();
-                            let response = '';
-                            
-                            if (lowerMsg.includes('hello') || lowerMsg.includes('hi') || lowerMsg.includes('hey')) {
-                                response = "Hello! I'm your 36nine.ai assistant. How can I help you understand our 3-6-9 approach to AI solutions?";
-                            } else if (lowerMsg.includes('help') || lowerMsg.includes('assist')) {
-                                response = "I'd be happy to help! Our 3-6-9 methodology structures AI implementation into Creation (3), Harmony (6), and Fulfillment (9) phases. Which aspect are you most interested in exploring?";
-                            } else if (lowerMsg.includes('3') || lowerMsg.includes('three') || lowerMsg.includes('creat')) {
-                                response = "The '3' in our methodology represents Creation - the genesis of ideas and innovation. This is where we explore possibilities and conceptualize groundbreaking AI applications tailored to your specific needs.";
-                            } else if (lowerMsg.includes('6') || lowerMsg.includes('six') || lowerMsg.includes('harmon')) {
-                                response = "The '6' symbolizes Harmony - the integration phase where we bring complex data, algorithms, and user needs into balance. This ensures AI solutions function seamlessly within your existing systems.";
-                            } else if (lowerMsg.includes('9') || lowerMsg.includes('nine') || lowerMsg.includes('fulfill')) {
-                                response = "The '9' represents Completion & Fulfillment - achieving the ultimate goal of delivering impactful results and transformative value through AI mastery. This is where your investment yields tangible returns.";
-                            } else if (lowerMsg.includes('contact') || lowerMsg.includes('speak') || lowerMsg.includes('call')) {
-                                response = "I'd be happy to connect you with our team! You can reach us at info@36nine.ai or call +1 (555) 369-3690. Alternatively, fill out the contact form on our website and we'll get back to you promptly.";
-                            } else if (lowerMsg.includes('cost') || lowerMsg.includes('price') || lowerMsg.includes('package')) {
-                                response = "Our pricing is customized based on your specific needs and the scope of AI implementation. I'd recommend scheduling a consultation with our team to discuss your requirements and receive a tailored quote.";
-                            } else if (lowerMsg.includes('tesla') || lowerMsg.includes('nikola')) {
-                                response = "Our methodology draws inspiration from Nikola Tesla's belief that 3, 6, and 9 are keys to understanding the universe. We've applied these principles to structure our approach to AI implementation and innovation.";
-                            } else {
-                                response = "Thank you for your inquiry. That's an interesting question about our AI solutions. Could you provide more details about your specific interests or challenges so I can better assist you?";
-                            }
-                            
-                            botContent.textContent = response;
-                            botMessage.appendChild(botContent);
-                            chatMessages.appendChild(botMessage);
-                            
-                            chatMessages.scrollTop = chatMessages.scrollHeight;
-                        }, 1000);
-                        
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                    }
-                    
-                    if (sendBtn) {
-                        sendBtn.addEventListener('click', sendMessage);
-                    }
-                    
-                    if (chatInput) {
-                        chatInput.addEventListener('keypress', (e) => {
-                            if (e.key === 'Enter') {
-                                sendMessage();
-                            }
-                        });
-                    }
-                }
-            }
-            
-            // Setup form submissions
-            function setupForms() {
-                const contactForm = document.getElementById('contactForm');
-                const loginForm = document.getElementById('loginForm');
-                const newsletterForm = document.querySelector('.newsletter-form');
-                
-                if (contactForm) {
-                    contactForm.addEventListener('submit', (e) => {
-                        e.preventDefault();
-                        alert('Thank you for your message! Our team will contact you soon.');
-                        contactForm.reset();
-                    });
-                }
-                
-                if (loginForm) {
-                    loginForm.addEventListener('submit', (e) => {
-                        e.preventDefault();
-                        alert('Login functionality will be implemented soon. Thank you for your interest!');
-                    });
-                }
-                
-                if (newsletterForm) {
-                    newsletterForm.addEventListener('submit', (e) => {
-                        e.preventDefault();
-                        alert('Thank you for subscribing to our newsletter!');
-                        newsletterForm.reset();
-                    });
-                }
-            }
-            
-            // Setup custom cursor
-            function setupCustomCursor() {
-                const cursor = document.querySelector('.cursor');
-                const cursorDot = document.querySelector('.cursor-dot');
-                
-                if (cursor && cursorDot) {
-                    document.addEventListener('mousemove', (e) => {
-                        cursor.style.left = e.clientX + 'px';
-                        cursor.style.top = e.clientY + 'px';
-                        
-                        cursorDot.style.left = e.clientX + 'px';
-                        cursorDot.style.top = e.clientY + 'px';
-                    });
-                    
-                    document.addEventListener('mousedown', () => {
-                        cursor.style.width = '25px';
-                        cursor.style.height = '25px';
-                        cursor.style.borderColor = 'var(--primary-color)';
-                    });
-                    
-                    document.addEventListener('mouseup', () => {
-                        cursor.style.width = '30px';
-                        cursor.style.height = '30px';
-                        cursor.style.borderColor = 'var(--primary-color)';
-                    });
-                    
-                    document.querySelectorAll('a, button, input, textarea, .btn').forEach(element => {
-                        element.addEventListener('mouseover', () => {
-                            cursor.style.width = '50px';
-                            cursor.style.height = '50px';
-                            cursor.style.borderColor = 'var(--primary-color)';
-                            cursor.style.background = 'rgba(0, 212, 255, 0.1)';
-                        });
-                        
-                        element.addEventListener('mouseleave', () => {
-                            cursor.style.width = '30px';
-                            cursor.style.height = '30px';
-                            cursor.style.borderColor = 'var(--primary-color)';
-                            cursor.style.background = 'transparent';
-                        });
-                    });
-                }
-            }
-            
-            // Add float animation keyframes dynamically
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes float {
-                    0% {
-                        transform: translateY(0) translateX(0);
-                    }
-                    25% {
-                        transform: translateY(-20px) translateX(10px);
-                    }
-                    50% {
-                        transform: translateY(0) translateX(20px);
-                    }
-                    75% {
-                        transform: translateY(20px) translateX(10px);
-                    }
-                    100% {
-                        transform: translateY(0) translateX(0);
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-        });
-    </script>
 </head>
 <body>
-    <div class="cursor"></div>
-    <div class="cursor-dot"></div>
-
-    <!-- Loading Screen -->
-    <div class="loading-screen">
-        <div class="loading-logo">
-            <img src="img/36nine-logo.svg" alt="36nine.ai Logo">
-        </div>
-        <div class="terminal-loading">
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                </div>
-                <div class="terminal-body">
-                    <div class="line">$ Initializing 36nine.ai core systems...</div>
-                    <div class="line">$ Loading neural networks... <span class="loading-progress">0%</span></div>
-                    <div class="line">$ Establishing quantum connections... <span class="loading-progress">0%</span></div>
-                    <div class="line">$ Calibrating 3-6-9 harmonic resonance... <span class="loading-progress">0%</span></div>
-                    <div class="line">$ Unlocking potential... <span class="loading-progress">0%</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Header and Navigation -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <a href="#home">
-                    <img src="img/36nine-logo.svg" alt="36nine.ai Logo">
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 w-full bg-opacity-90 bg-black z-50 shadow-md border-b border-blue-500">
+        <div class="container mx-auto px-4 py-3">
+            <nav class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center">
+                    <div class="logo-pulse neon-text text-3xl font-bold mr-2">36nine</div>
+                    <span class="text-blue-400">.ai</span>
                 </a>
-            </div>
-            <nav>
-                <ul class="main-nav">
-                    <li><a href="#home" class="nav-link active">Home</a></li>
-                    <li><a href="#philosophy" class="nav-link">About</a></li>
-                    <li><a href="#expertise" class="nav-link">Playground</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                    <li><a href="#login" class="login-btn">Member Login</a></li>
-                </ul>
-                <div class="mobile-nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                
+                <!-- Desktop Menu -->
+                <div id="desktop-menu" class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link py-2 hover:text-blue-400 transition-all nav-active">Home</a>
+                    <a href="#about" class="nav-link py-2 hover:text-blue-400 transition-all">About</a>
+                    <a href="#playground" class="nav-link py-2 hover:text-blue-400 transition-all">Playground</a>
+                    <a href="#news" class="nav-link py-2 hover:text-blue-400 transition-all">News</a>
+                    <a href="#contact" class="nav-link py-2 hover:text-blue-400 transition-all">Contact</a>
+                    <a href="#login" class="btn-neon py-1 px-4 rounded">Login</a>
                 </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
             </nav>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-nav" class="mobile-nav md:hidden">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="mobile-nav-link py-2 hover:text-blue-400 transition-all">Home</a>
+                    <a href="#about" class="mobile-nav-link py-2 hover:text-blue-400 transition-all">About</a>
+                    <a href="#playground" class="mobile-nav-link py-2 hover:text-blue-400 transition-all">Playground</a>
+                    <a href="#news" class="mobile-nav-link py-2 hover:text-blue-400 transition-all">News</a>
+                    <a href="#contact" class="mobile-nav-link py-2 hover:text-blue-400 transition-all">Contact</a>
+                    <a href="#login" class="btn-neon py-2 px-4 rounded text-center">Login</a>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav">
-        <ul>
-            <li><a href="#home" class="nav-link">Home</a></li>
-            <li><a href="#philosophy" class="nav-link">About</a></li>
-            <li><a href="#expertise" class="nav-link">Playground</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-            <li><a href="#login" class="login-btn">Member Login</a></li>
-        </ul>
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center pt-20 circuit-background">
+            <div class="container mx-auto px-4 py-20">
+                <div class="flex flex-col-reverse md:flex-row items-center">
+                    <div class="w-full md:w-1/2 mt-10 md:mt-0">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6 neon-text animate__animated animate__fadeInUp">
+                            Unlocking AI <br class="hidden md:block">Potential
+                        </h1>
+                        <p class="text-xl mb-8 text-gray-300 animate__animated animate__fadeInUp animate__delay-1s">
+                            Inspired by Tesla's vision that 3, 6, and 9 are the keys to the universe,
+                            we harness AI to reveal deeper insights and shape a more intelligent future.
+                        </p>
+                        <div class="flex flex-wrap gap-4 animate__animated animate__fadeInUp animate__delay-2s">
+                            <a href="#about" class="btn-neon py-3 px-8 rounded-lg text-lg">Learn More</a>
+                            <a href="#contact" class="py-3 px-8 rounded-lg text-lg border border-gray-400 hover:border-white transition-all">Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 flex justify-center">
+                        <div class="relative animate__animated animate__fadeIn">
+                            <!-- Circuit Board Background SVG -->
+                            <svg width="400" height="400" viewBox="0 0 400 400" fill="none" class="max-w-full h-auto">
+                                <!-- Circuit Pattern -->
+                                <path d="M50,50 L50,150 L150,150 L150,250 L250,250 L250,350 L350,350" 
+                                      stroke="#0099ff" stroke-width="2" stroke-opacity="0.3" stroke-dasharray="5,5" />
+                                <path d="M100,50 L100,200 L200,200 L200,350" 
+                                      stroke="#0099ff" stroke-width="2" stroke-opacity="0.3" stroke-dasharray="5,5" />
+                                <path d="M150,50 L150,100 L250,100 L250,200 L300,200 L300,350" 
+                                      stroke="#0099ff" stroke-width="2" stroke-opacity="0.3" stroke-dasharray="5,5" />
+                                <path d="M200,50 L200,150 L300,150 L300,300 L350,300" 
+                                      stroke="#0099ff" stroke-width="2" stroke-opacity="0.3" stroke-dasharray="5,5" />
+                                
+                                <!-- Connection Points -->
+                                <circle cx="50" cy="50" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="50" cy="150" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="150" cy="150" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="150" cy="250" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="250" cy="250" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="250" cy="350" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="350" cy="350" r="4" fill="#00ffff" class="logo-pulse" />
+                                
+                                <circle cx="100" cy="50" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="100" cy="200" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="200" cy="200" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="200" cy="350" r="4" fill="#00ffff" class="logo-pulse" />
+                                
+                                <circle cx="150" cy="50" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="150" cy="100" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="250" cy="100" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="250" cy="200" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="300" cy="200" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="300" cy="350" r="4" fill="#00ffff" class="logo-pulse" />
+                                
+                                <circle cx="200" cy="50" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="200" cy="150" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="300" cy="150" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="300" cy="300" r="4" fill="#00ffff" class="logo-pulse" />
+                                <circle cx="350" cy="300" r="4" fill="#00ffff" class="logo-pulse" />
+                                
+                                <!-- Logo Text -->
+                                <text x="200" y="200" font-family="'Fira Code', monospace" font-size="40" font-weight="bold" text-anchor="middle" fill="white" stroke="#00ffff" stroke-width="1" class="logo-pulse">36nine</text>
+                                <text x="270" y="200" font-family="'Fira Code', monospace" font-size="20" text-anchor="middle" fill="#0099ff">.ai</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3-6-9 Showcases -->
+                <div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-6 bg-opacity-20 bg-blue-900 rounded-lg border border-blue-500 hover:border-blue-300 transition-all neon-box">
+                        <div class="number-highlight neon-text">3</div>
+                        <h3 class="text-2xl font-bold mb-4 mt-4">Creation</h3>
+                        <p class="text-gray-300">The genesis of ideas, the spark of innovation, and the fundamental act of creating new possibilities and solutions using AI.</p>
+                    </div>
+                    
+                    <div class="p-6 bg-opacity-20 bg-blue-900 rounded-lg border border-blue-500 hover:border-blue-300 transition-all neon-box">
+                        <div class="number-highlight neon-text">6</div>
+                        <h3 class="text-2xl font-bold mb-4 mt-4">Harmony</h3>
+                        <p class="text-gray-300">Bringing elements into balance – integrating complex data, sophisticated algorithms, user needs, and strategic goals.</p>
+                    </div>
+                    
+                    <div class="p-6 bg-opacity-20 bg-blue-900 rounded-lg border border-blue-500 hover:border-blue-300 transition-all neon-box">
+                        <div class="number-highlight neon-text">9</div>
+                        <h3 class="text-2xl font-bold mb-4 mt-4">Fulfillment</h3>
+                        <p class="text-gray-300">The realization of the initial vision, the delivery of impactful results, and unlocking significant value through AI mastery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about" class="py-20 circuit-background">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold neon-text mb-4">About Us</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">Unlocking Potential with 36nine.ai</p>
+                </div>
+                
+                <div class="mb-16">
+                    <div class="bg-opacity-30 bg-blue-900 p-8 rounded-lg">
+                        <p class="text-lg mb-6">
+                            Welcome to 36nine.ai, where profound inspiration meets the transformative power of Artificial Intelligence. 
+                            Our name itself is a nod to the genius of Nikola Tesla, who believed the numbers 3, 6, and 9 held a unique 
+                            significance – "a key to the universe." We see a powerful parallel in the potential of AI to unlock 
+                            hidden patterns, reveal deeper insights, and shape a more intelligent future.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mb-16">
+                    <h3 class="text-3xl font-bold mb-8 neon-text">The Philosophy: The Magnificence of 3, 6, and 9 in the Age of AI</h3>
+                    <p class="text-lg mb-8">
+                        Our name and philosophy draw inspiration from Nikola Tesla's fascination with the numbers 3, 6, and 9 – keys, 
+                        he believed, to understanding the universe. We honor the original essence of these powerful numbers and apply 
+                        them as guiding principles to the transformative potential of Artificial Intelligence:
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                        <div class="p-6 bg-opacity-20 bg-blue-900 rounded-lg border border-blue-500 hover:border-blue-300 transition-all">
+                            <div class="number-highlight neon-text">3</div>
+                            <h4 class="text-xl font-bold mb-2">Creation</h4>
+                            <p>
+                                This number signifies Creation. For 36nine.ai, this represents the genesis of ideas, the spark of innovation, 
+                                and the fundamental act of creating new possibilities and solutions using AI. It's where we explore the 
+                                "what if" and conceptualize groundbreaking applications.
+                            </p>
+                        </div>
+                        
+                        <div class="p-6 bg-opacity-20 bg-blue-900 rounded-lg border border-blue-500 hover:border-blue-300 transition-all">
+                            <div class="number-highlight neon-text">6</div>
+                            <h4 class="text-xl font-bold mb-2">Harmony</h4>
+                            <p>
+                                This number stands for Harmony. We see this as the crucial stage of bringing elements into balance – 
+                                integrating complex data, sophisticated algorithms, user needs, and strategic goals. It's about achieving 
+                                a harmonious implementation where AI solutions work seamlessly and effectively within their intended environment.
+                            </p>
+                        </div>
+                        
+                        <div class="p-6 bg-opacity-20 bg-blue-900 rounded-lg border border-blue-500 hover:border-blue-300 transition-all">
+                            <div class="number-highlight neon-text">9</div>
+                            <h4 class="text-xl font-bold mb-2">Completion & Fulfillment</h4>
+                            <p>
+                                This number represents Completion and Fulfillment. In our work, this signifies not just finishing a project, 
+                                but achieving the ultimate goal – the realization of the initial vision, the delivery of impactful results, 
+                                and the fulfillment of unlocking significant, tangible value and transformation for our clients through AI mastery.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-lg">
+                        By embracing this framework – moving from Creation (3) through Harmonious Implementation (6) to ultimate 
+                        Fulfillment (9) – we structure our approach to harnessing the full power of Artificial Intelligence.
+                    </p>
+                </div>
+                
+                <div class="mb-16">
+                    <h3 class="text-3xl font-bold mb-8 neon-text">The Visionary Foundation</h3>
+                    <p class="text-lg mb-6">
+                        Fueling 36nine.ai is a foundation built on a unique blend of business insight and technological understanding. 
+                        Our background includes Business Administration, providing a strong grasp of market needs and strategic objectives, 
+                        complemented by Management Information Systems (MIS), offering expertise in how technology systems deliver value 
+                        and drive efficiency.
+                    </p>
+                    
+                    <p class="text-lg mb-6">
+                        This combination allows us to bridge the gap between business challenges and AI-driven solutions. Our passion lies in:
+                    </p>
+                    
+                    <ul class="list-disc pl-8 mb-8 space-y-2 text-lg">
+                        <li>
+                            <span class="text-blue-400 font-bold">Understanding Business Needs:</span> Applying business administration principles 
+                            to identify where AI can create the most significant impact.
+                        </li>
+                        <li>
+                            <span class="text-blue-400 font-bold">Leveraging Information Systems:</span> Utilizing MIS knowledge to design 
+                            and envision practical, effective AI implementations.
+                        </li>
+                        <li>
+                            <span class="text-blue-400 font-bold">Driving AI Innovation:</span> Exploring the cutting edge of Artificial Intelligence 
+                            to solve real-world problems.
+                        </li>
+                        <li>
+                            <span class="text-blue-400 font-bold">Strategic Application:</span> Ensuring AI solutions are not just technically sound 
+                            but strategically aligned with business goals.
+                        </li>
+                    </ul>
+                    
+                    <p class="text-lg">
+                        This unique perspective equips us to effectively guide our partners through each essential stage of the AI journey: 
+                        from AI-driven Creation and Innovation (3), through grounded, practical systems thinking for Harmonious 
+                        Implementation (6), ultimately reaching transformative results and Fulfillment (9).
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-3xl font-bold mb-8 neon-text">Our Mission: Guiding Your AI Journey Through 3, 6, 9</h3>
+                    <p class="text-lg mb-8">
+                        At 36nine.ai, our mission is to be your strategic partner, guiding you on a transformative AI journey structured 
+                        by the principles of 3, 6, and 9:
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                        <div class="p-6 bg-opacity-20 bg-blue-900 rounded-lg border border-blue-500 transition-all">
+                            <div class="text-2xl font-bold mb-2">1</div>
+                            <h4 class="text-xl font-bold mb-2">Creation (3)</h4>
+                            <p>
+                                We begin here, collaborating closely to identify opportunities, spark innovation, and conceptualize 
+                                bespoke AI strategies and solutions that address your unique challenges and goals.
+                            </p>
+                        </div>
+                        
+                        <div class="p-6 bg-opacity-20 bg-blue-900 rounded-lg border border-blue-500 transition-all">
+                            <div class="text-2xl font-bold mb-2">2</div>
+                            <h4 class="text-xl font-bold mb-2">Harmony (6)</h4>
+                            <p>
+                                We then navigate the practicalities, meticulously developing, implementing, and integrating these 
+                                AI solutions. Our focus is on ensuring seamless function, balance within your existing systems, 
+                                and harmonious alignment with your operations.
+                            </p>
+                        </div>
+                        
+                        <div class="p-6 bg-opacity-20 bg-blue-900 rounded-lg border border-blue-500 transition-all">
+                            <div class="text-2xl font-bold mb-2">3</div>
+                            <h4 class="text-xl font-bold mb-2">Fulfillment (9)</h4>
+                            <p>
+                                Finally, we drive towards completion and the ultimate fulfillment of your objectives. We ensure 
+                                the deployed AI solutions deliver measurable, impactful, and transformative results, unlocking 
+                                your organization's highest potential.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-lg mb-8">
+                        We leverage our unique blend of business acumen and systems expertise throughout this journey, ensuring 
+                        the process is clear, effective, and sets new benchmarks for success, truly embodying the power unlocked by 3, 6, and 9.
+                    </p>
+                    
+                    <p class="text-lg mb-8">
+                        Join us on the journey to explore the intersection of profound principles and intelligent technology. 
+                        Discover the potential waiting to be unlocked with 36nine.ai.
+                    </p>
+                    
+                    <div class="text-center">
+                        <a href="#playground" class="btn-neon py-3 px-8 rounded-lg text-lg">Explore Our Playground</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Playground Section -->
+        <section id="playground" class="py-20 circuit-background">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold neon-text mb-4">AI Playground</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Experience the power of our AI solutions in this interactive playground. Explore how our technology 
+                        can transform your business through the principles of Creation (3), Harmony (6), and Fulfillment (9).
+                    </p>
+                </div>
+                
+                <div class="mb-16">
+                    <div class="playground-terminal clean-scroll">
+                        <div id="terminal-output">
+                            <div class="text-blue-400">$ Welcome to 36nine.ai - Playground v1.0</div>
+                            <div class="my-2"></div>
+                            <div class="text-blue-400">$ Initializing AI systems...</div>
+                            <div class="my-2"></div>
+                            <div class="text-blue-400">$ Loading neural networks: Complete</div>
+                            <div class="my-2"></div>
+                            <div class="text-blue-400">$ Ready for interaction</div>
+                            <div class="my-2"></div>
+                            <div class="text-blue-400 cursor">$ _</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 bg-opacity-30 bg-blue-900 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold mb-4">Playground Features:</h4>
+                        <ul class="list-disc pl-8 mb-6 space-y-2">
+                            <li>AI-powered business intelligence demo</li>
+                            <li>Predictive analytics visualization</li>
+                            <li>Natural language processing tools</li>
+                            <li>Custom AI model testing environment</li>
+                        </ul>
+                        <p class="italic text-gray-400">Coming soon: Interactive demos showcasing the power of 3, 6, 9 methodology in AI applications.</p>
+                        
+                        <div class="mt-6">
+                            <a href="#login" class="btn-neon py-2 px-6 rounded">Launch Playground</a>
+                            <small class="block mt-2 text-gray-400">* Requires member login</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="p-6 bg-opacity-20 bg-blue-900 rounded-lg border border-blue-500 transition-all">
+                        <h3 class="text-2xl font-bold mb-4">Developer API</h3>
+                        <p class="mb-6">
+                            Access our AI capabilities through a robust, well-documented API. Build custom applications 
+                            that leverage our 3, 6, 9 methodology.
+                        </p>
+                        <a href="#login" class="btn-neon py-2 px-6 rounded">View Documentation</a>
+                    </div>
+                    
+                    <div class="p-6 bg-opacity-20 bg-blue-900 rounded-lg border border-blue-500 transition-all">
+                        <h3 class="text-2xl font-bold mb-4">Sandbox Environment</h3>
+                        <p class="mb-6">
+                            Experiment with our AI models in a secure sandbox environment. Test how our solutions 
+                            can tackle your specific business challenges.
+                        </p>
+                        <a href="#login" class="btn-neon py-2 px-6 rounded">Access Sandbox</a>
+                    </div>
+                </div>
+                
+                <div class="mt-16 text-center">
+                    <h3 class="text-3xl font-bold mb-8">Ready to Experience the Power of 3, 6, 9?</h3>
+                    <a href="#login" class="btn-neon py-3 px-8 rounded-lg text-lg">Join our community of innovators</a>
+                    <p class="mt-4 text-gray-400">Gain full access to our AI playground and tools.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- News Section -->
+        <section id="news" class="py-20 circuit-background">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold neon-text mb-4">Latest News</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">Stay Updated with 36nine.ai</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <!-- News Card 1 -->
+                    <div class="news-card rounded-lg overflow-hidden">
+                        <div class="h-48 bg-blue-900 bg-opacity-30 flex items-center justify-center">
+                            <div class="number-highlight neon-text text-2xl">3</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="text-sm text-gray-400 mb-2">March 9, 2023</div>
+                            <h3 class="text-xl font-bold mb-3 hover:text-blue-400 transition-all">The Creation Phase: Innovating with AI</h3>
+                            <p class="text-gray-300 mb-4">
+                                Our team explores how the Creation principle can drive innovation in business intelligence applications.
+                            </p>
+                            <a href="#" class="text-blue-400 hover:text-blue-300 transition-all">Read more →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- News Card 2 -->
+                    <div class="news-card rounded-lg overflow-hidden">
+                        <div class="h-48 bg-blue-900 bg-opacity-30 flex items-center justify-center">
+                            <div class="number-highlight neon-text text-2xl">6</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="text-sm text-gray-400 mb-2">June 3, 2023</div>
+                            <h3 class="text-xl font-bold mb-3 hover:text-blue-400 transition-all">Achieving Harmony in Complex AI Systems</h3>
+                            <p class="text-gray-300 mb-4">
+                                A case study on how we implemented harmonious integration of AI solutions in the financial sector.
+                            </p>
+                            <a href="#" class="text-blue-400 hover:text-blue-300 transition-all">Read more →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- News Card 3 -->
+                    <div class="news-card rounded-lg overflow-hidden">
+                        <div class="h-48 bg-blue-900 bg-opacity-30 flex items-center justify-center">
+                            <div class="number-highlight neon-text text-2xl">9</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="text-sm text-gray-400 mb-2">September 6, 2023</div>
+                            <h3 class="text-xl font-bold mb-3 hover:text-blue-400 transition-all">Fulfillment: Measuring AI Success</h3>
+                            <p class="text-gray-300 mb-4">
+                                Learn how our clients are achieving complete fulfillment of their AI goals through our methodology.
+                            </p>
+                            <a href="#" class="text-blue-400 hover:text-blue-300 transition-all">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Newsletter Signup -->
+                <div class="bg-blue-900 bg-opacity-20 p-8 rounded-lg border border-blue-500">
+                    <div class="max-w-3xl mx-auto">
+                        <h3 class="text-2xl font-bold mb-4 text-center">Subscribe to Our Newsletter</h3>
+                        <p class="text-center mb-6">
+                            Receive the latest news, insights, and updates on our AI solutions directly to your inbox.
+                        </p>
+                        <form class="flex flex-col md:flex-row gap-4">
+                            <input type="email" placeholder="Your email address" class="form-control flex-grow rounded-lg" required>
+                            <button type="submit" class="btn-neon py-3 px-6 rounded-lg">Subscribe</button>
+                        </form>
+                        <p class="text-center text-sm text-gray-400 mt-4">
+                            We respect your privacy. Unsubscribe at any time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 circuit-background">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold neon-text mb-4">Contact Us</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Let's discuss how 36nine.ai can help transform your business through the power of AI
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                    <div>
+                        <div class="bg-blue-900 bg-opacity-20 p-8 rounded-lg border border-blue-500 h-full">
+                            <h3 class="text-2xl font-bold mb-6">Get In Touch</h3>
+                            
+                            <div class="mb-6">
+                                <h4 class="text-lg font-bold mb-2">Email</h4>
+                                <p class="flex items-center">
+                                    <span class="mr-2 text-blue-400"><i class="fas fa-envelope"></i></span>
+                                    <a href="/cdn-cgi/l/email-protection#adc4c3cbc2ed9e9bc3c4c3c883ccc4" class="hover:text-blue-400 transition-all"><span class="__cf_email__" data-cfemail="6f060109002f5c590106010a410e06">[email&#160;protected]</span></a>
+                                </p>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <h4 class="text-lg font-bold mb-2">Phone</h4>
+                                <p class="flex items-center">
+                                    <span class="mr-2 text-blue-400"><i class="fas fa-phone"></i></span>
+                                    <a href="tel:+11234567890" class="hover:text-blue-400 transition-all">+1 (123) 456-7890</a>
+                                </p>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <h4 class="text-lg font-bold mb-2">Address</h4>
+                                <p class="flex items-start">
+                                    <span class="mr-2 text-blue-400 mt-1"><i class="fas fa-map-marker-alt"></i></span>
+                                    <span>
+                                        123 Tech Innovation Drive<br>
+                                        Suite 369<br>
+                                        San Francisco, CA 94107
+                                    </span>
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-lg font-bold mb-2">Social Media</h4>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-gray-300 hover:text-blue-400 transition-all text-xl">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-300 hover:text-blue-400 transition-all text-xl">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-300 hover:text-blue-400 transition-all text-xl">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-300 hover:text-blue-400 transition-all text-xl">
+                                        <i class="fab fa-medium"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <form class="bg-blue-900 bg-opacity-20 p-8 rounded-lg border border-blue-500">
+                            <h3 class="text-2xl font-bold mb-6">Send Us A Message</h3>
+                            
+                            <div class="form-group">
+                                <label for="name" class="block mb-2">Name</label>
+                                <input type="text" id="name" class="form-control rounded-lg" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="block mb-2">Email</label>
+                                <input type="email" id="email" class="form-control rounded-lg" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject" class="block mb-2">Subject</label>
+                                <input type="text" id="subject" class="form-control rounded-lg" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message" class="block mb-2">Message</label>
+                                <textarea id="message" class="form-control rounded-lg" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-neon py-3 px-6 rounded-lg w-full">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Login Section -->
+        <section id="login" class="py-20 circuit-background">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold neon-text mb-4">Member Login</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Secure login protected with 256-bit encryption
+                    </p>
+                </div>
+                
+                <div class="max-w-md mx-auto bg-blue-900 bg-opacity-20 p-8 rounded-lg border border-blue-500">
+                    <form>
+                        <div class="form-group">
+                            <label for="login-email" class="block mb-2">Email</label>
+                            <input type="email" id="login-email" class="form-control rounded-lg" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="login-password" class="block mb-2">Password</label>
+                            <input type="password" id="login-password" class="form-control rounded-lg" required>
+                        </div>
+                        
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="remember" class="mr-2">
+                                <label for="remember">Remember me</label>
+                            </div>
+                            <a href="#" class="text-blue-400 hover:text-blue-300 transition-all">Forgot Password?</a>
+                        </div>
+                        
+                        <button type="submit" class="btn-neon py-3 px-6 rounded-lg w-full mb-4">Login</button>
+                        
+                        <p class="text-center">
+                            Don't have an account? <a href="#" class="text-blue-400 hover:text-blue-300 transition-all">Register</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- HTML Sitemap Section -->
+        <section id="sitemap" class="py-20 circuit-background">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold neon-text mb-4">Sitemap</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Navigate our site with ease
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto bg-blue-900 bg-opacity-20 p-8 rounded-lg border border-blue-500">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">Main Pages</h3>
+                            <ul class="sitemap-list">
+                                <li><a href="#home" class="hover:text-blue-400 transition-all">Home</a></li>
+                                <li><a href="#about" class="hover:text-blue-400 transition-all">About Us</a></li>
+                                <li><a href="#playground" class="hover:text-blue-400 transition-all">AI Playground</a></li>
+                                <li><a href="#news" class="hover:text-blue-400 transition-all">News</a></li>
+                                <li><a href="#contact" class="hover:text-blue-400 transition-all">Contact Us</a></li>
+                                <li><a href="#login" class="hover:text-blue-400 transition-all">Member Login</a></li>
+                                <li><a href="#sitemap" class="hover:text-blue-400 transition-all">Sitemap</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">Resources</h3>
+                            <ul class="sitemap-list">
+                                <li><a href="#" class="hover:text-blue-400 transition-all">API Documentation</a></li>
+                                <li><a href="#" class="hover:text-blue-400 transition-all">Case Studies</a></li>
+                                <li><a href="#" class="hover:text-blue-400 transition-all">White Papers</a></li>
+                                <li><a href="#" class="hover:text-blue-400 transition-all">Blog Articles</a></li>
+                                <li><a href="#" class="hover:text-blue-400 transition-all">Terms of Service</a></li>
+                                <li><a href="#" class="hover:text-blue-400 transition-all">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-blue-900">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="logo-pulse neon-text text-3xl font-bold mb-4 flex items-center">
+                        36nine<span class="text-blue-400 ml-1">.ai</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Unlocking AI potential through the principles of 3, 6, and 9.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-all">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-all">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-all">
+                            <i class="fab fa-medium"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-blue-400 transition-all">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-blue-400 transition-all">About Us</a></li>
+                        <li><a href="#playground" class="text-gray-400 hover:text-blue-400 transition-all">AI Playground</a></li>
+                        <li><a href="#news" class="text-gray-400 hover:text-blue-400 transition-all">News</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-blue-400 transition-all">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-all">API Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-all">Case Studies</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-all">White Papers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-all">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Info</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <span class="mr-2 text-blue-400 mt-1"><i class="fas fa-map-marker-alt"></i></span>
+                            <span class="text-gray-400">
+                                123 Tech Innovation Drive<br>
+                                Suite 369<br>
+                                San Francisco, CA 94107
+                            </span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-blue-400"><i class="fas fa-phone"></i></span>
+                            <a href="tel:+11234567890" class="text-gray-400 hover:text-blue-400 transition-all">+1 (123) 456-7890</a>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-blue-400"><i class="fas fa-envelope"></i></span>
+                            <a href="/cdn-cgi/l/email-protection#84edeae2ebc4b7b2eaedeae1aae5ed" class="text-gray-400 hover:text-blue-400 transition-all"><span class="__cf_email__" data-cfemail="761f181019364540181f181358171f">[email&#160;protected]</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 mb-4 md:mb-0">
+                    &copy; 2023 36nine.ai. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-blue-400 transition-all">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-blue-400 transition-all">Terms of Service</a>
+                    <a href="#sitemap" class="text-gray-500 hover:text-blue-400 transition-all">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- AI Chat Interface -->
+    <div id="chat-container" class="hidden md:flex">
+        <div id="chat-header" class="rounded-t-lg">
+            <div class="flex items-center">
+                <i class="fas fa-robot mr-2 text-blue-400"></i>
+                <span>36nine AI Assistant</span>
+            </div>
+            <i id="chat-toggle" class="fas fa-chevron-up text-blue-400"></i>
+        </div>
+        <div id="chat-messages" class="clean-scroll">
+            <!-- Chat messages will be added here -->
+            <div class="chat-message ai-message">
+                Hello! I'm your 36nine.ai assistant. How can I help you today?
+            </div>
+        </div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Type your message...">
+            <button id="chat-submit"><i class="fas fa-paper-plane"></i></button>
+        </div>
     </div>
-
-    <!-- Home Section -->
-    <section id="home" class="home-section">
-        <div class="particles-background"></div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="glitch-text" data-text="Unlocking AI Potential">Unlocking AI Potential</h1>
-                <p class="typewriter">Inspired by Tesla's vision that 3, 6, and 9 are the keys to the universe, we harness AI to reveal deeper insights and shape a more intelligent future.</p>
-                <div class="hero-buttons">
-                    <a href="#philosophy" class="btn primary-btn">Discover Our Approach</a>
-                    <a href="#contact" class="btn secondary-btn">Start Your AI Journey</a>
-                </div>
-            </div>
-            <div class="circuit-paths">
-                <div class="circuit path-1"></div>
-                <div class="circuit path-2"></div>
-                <div class="circuit path-3"></div>
-                <div class="node node-1" data-number="3"><span>3</span></div>
-                <div class="node node-2" data-number="6"><span>6</span></div>
-                <div class="node node-3" data-number="9"><span>9</span></div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll to explore</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
-
-    <!-- Philosophy Section -->
-    <section id="philosophy" class="philosophy-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>The Power of 3, 6, 9</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="philosophy-grid">
-                <div class="philosophy-card" data-number="3">
-                    <div class="card-header">
-                        <div class="number">3</div>
-                        <h3>Creation</h3>
-                    </div>
-                    <div class="card-content">
-                        <p>This number signifies Creation. For 36nine.ai, this represents the genesis of ideas, the spark of innovation, and the fundamental act of creating new possibilities and solutions using AI. It's where we explore the "what if" and conceptualize groundbreaking applications.</p>
-                    </div>
-                    <div class="card-circuit"></div>
-                </div>
-                <div class="philosophy-card" data-number="6">
-                    <div class="card-header">
-                        <div class="number">6</div>
-                        <h3>Harmony</h3>
-                    </div>
-                    <div class="card-content">
-                        <p>This number stands for Harmony. We see this as the crucial stage of bringing elements into balance – integrating complex data, sophisticated algorithms, user needs, and strategic goals. It's about achieving a harmonious implementation where AI solutions work seamlessly and effectively within their intended environment.</p>
-                    </div>
-                    <div class="card-circuit"></div>
-                </div>
-                <div class="philosophy-card" data-number="9">
-                    <div class="card-header">
-                        <div class="number">9</div>
-                        <h3>Completion & Fulfillment</h3>
-                    </div>
-                    <div class="card-content">
-                        <p>This number represents Completion and Fulfillment. In our work, this signifies not just finishing a project, but achieving the ultimate goal – the realization of the initial vision, the delivery of impactful results, and the fulfillment of unlocking significant, tangible value and transformation for our clients through AI mastery.</p>
-                    </div>
-                    <div class="card-circuit"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Expertise Section -->
-    <section id="expertise" class="expertise-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Expertise</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="expertise-grid">
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Business Intelligence</h3>
-                    <p>Transform data into actionable insights with our AI-powered analytics solutions</p>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-sitemap"></i>
-                    </div>
-                    <h3>AI Strategy Development</h3>
-                    <p>Craft a comprehensive AI roadmap aligned with your business objectives</p>
+    
+    <!-- Scripts -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileNav = document.getElementById('mobile-nav');
+            
+            if (mobileMenuBtn && mobileNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileNav.classList.toggle('open');
+                    mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+                    mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+                });
+            }
+            
+            // Navigation Active State
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            const sections = document.querySelectorAll('section');
+            
+            function updateActiveLink() {
+                let currentSectionId = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.scrollY >= (sectionTop - 200)) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('nav-active');
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('nav-active');
+                    }
+                });
+                
+                mobileNavLinks.forEach(link => {
+                    link.classList.remove('nav-active');
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('nav-active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink();
+            
+            // Smooth Scrolling for Navigation Links
+            const allNavLinks = document.querySelectorAll('a[href^="#"]');
+            
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') !== '#') {
+                        e.preventDefault();
+                        
+                        const targetId = this.getAttribute('href');
+                        const targetSection = document.querySelector(targetId);
+                        
+                        if (targetSection) {
+                            window.scrollTo({
+                                top: targetSection.offsetTop,
+                                behavior: 'smooth'
+                            });
+                            
+                            // Close mobile menu if open
+                            if (mobileNav && mobileNav.classList.contains('open')) {
+                                mobileNav.classList.remove('open');
+                                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                            }
+                        }
+                    }
+                });
+            });
+            
+            // Terminal Animation
+            const terminalOutput = document.getElementById('terminal-output');
+            
+            if (terminalOutput) {
+                let terminalCommands = [
+                    "$ analyzing business data...",
+                    "$ running pattern recognition...",
+                    "$ processing insights...",
+                    "$ identifying optimization opportunities...",
+                    "$ generating recommendations..."
+                ];
+                
+                let terminalIndex = 0;
+                let isTyping = false;
+                
+                function simulateTerminal() {
+                    if (isTyping || terminalIndex >= terminalCommands.length) return;
+                    
+                    isTyping = true;
+                    const command = terminalCommands[terminalIndex];
+                    const newLine = document.createElement('div');
+                    newLine.className = 'text-blue-400';
+                    terminalOutput.appendChild(newLine);
+                    
+                    let charIndex = 0;
+                    const typingInterval = setInterval(() => {
+                        if (charIndex < command.length) {
+                            newLine.textContent += command.charAt(charIndex);
+                            charIndex++;
+                        } else {
+                            clearInterval(typingInterval);
+                            
+                            // Add a delay before the next command
+                            setTimeout(() => {
+                                const spacer = document.createElement('div');
+                                spacer.className = 'my-2';
+                                terminalOutput.appendChild(spacer);
+                                
+                                isTyping = false;
+                                terminalIndex++;
+                                
+                                if (terminalIndex < terminalCommands.length) {
+                                    simulateTerminal();
+                                } else {
+                                    // All commands complete, add cursor
+                                    const finalLine = document.createElement('div');
+                                    finalLine.className = 'text-blue-400 cursor';
+                                    finalLine.textContent = '$ ';
+                                    terminalOutput.appendChild(finalLine);
+                                }
+                            }, 1000);
+                        }
+                    }, 50);
+                }
+                
+                // Start terminal animation when it comes into view
+                const playgroundObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !isTyping && terminalIndex === 0) {
+                            setTimeout(simulateTerminal, 1000);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                playgroundObserver.observe(document.getElementById('playground'));
+            }
+            
+            // Chat Interface
+            const chatContainer = document.getElementById('chat-container');
+            const chatToggle = document.getElementById('chat-toggle');
+            const chatMessages = document.getElementById('chat-messages');
+            const chatInput = document.getElementById('chat-input');
+            const chatSubmit = document.getElementById('chat-submit');
+            
+            if (chatContainer && chatToggle && chatMessages && chatInput && chatSubmit) {
+                // Show chat after delay
+                setTimeout(() => {
+                    chatContainer.classList.remove('hidden');
+                }, 2000);
+                
+                // Toggle chat open/closed
+                chatToggle.addEventListener('click', function() {
+                    chatContainer.classList.toggle('open');
+                    this.classList.toggle('fa-chevron-up');
+                    this.classList.toggle('fa-chevron-down');
+                });
+                
+                // Submit message
+                function submitMessage() {
+                    const message = chatInput.value.trim();
+                    if (message === '') return;
+                    
+                    // Add user message
+                    const userMessage = document.createElement('div');
+                    userMessage.className = 'chat-message user-message';
+                    userMessage.textContent = message;
+                    chatMessages.appendChild(userMessage);
+                    
+                    // Clear input
+                    chatInput.value = '';
+                    
+                    // Scroll to bottom
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    
+                    // Show typing indicator
+                    const typingIndicator = document.createElement('div');
+                    typingIndicator.className = 'chat-message ai-message';
+                    typingIndicator.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+                    chatMessages.appendChild(typingIndicator);
+                    
+                    // Scroll to bottom
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    
+                    // Generate AI response based on 3-6-9 principles
+                    setTimeout(() => {
+                        // Remove typing indicator
+                        chatMessages.removeChild(typingIndicator);
+                        
+                        // Determine which principle to reference based on message content
+                        let response = '';
+                        const lowerMsg = message.toLowerCase();
+                        
+                        if (lowerMsg.includes('hello') || lowerMsg.includes('hi') || lowerMsg.includes('hey')) {
+                            response = "Hello! I'm your 36nine.ai assistant. How can I help you understand our 3-6-9 approach to AI solutions?";
+                        } else if (lowerMsg.includes('3') || lowerMsg.includes('three') || lowerMsg.includes('creat')) {
+                            response = "The principle of 3 (Creation) represents the genesis of ideas and innovation. At 36nine.ai, we begin by exploring possibilities and conceptualizing AI solutions tailored to your specific challenges.";
+                        } else if (lowerMsg.includes('6') || lowerMsg.includes('six') || lowerMsg.includes('harmon')) {
+                            response = "The principle of 6 (Harmony) focuses on balance and integration. We ensure AI solutions work seamlessly within your existing systems, bringing together technology, data, and business processes in perfect alignment.";
+                        } else if (lowerMsg.includes('9') || lowerMsg.includes('nine') || lowerMsg.includes('fulfill')) {
+                            response = "The principle of 9 (Fulfillment) represents completion and achievement. Our AI implementations deliver measurable, transformative results that fulfill your business objectives and unlock your organization's highest potential.";
+                        } else if (lowerMsg.includes('tesla')) {
+                            response = "Nikola Tesla believed that 3, 6, and 9 were the key to understanding the universe. At 36nine.ai, we've applied this philosophy to create a framework for successful AI implementation.";
+                        } else if (lowerMsg.includes('service') || lowerMsg.includes('offer') || lowerMsg.includes('help')) {
+                            response = "We offer a range of AI services including business intelligence, predictive analytics, natural language processing, and custom AI model development. Each solution is developed through our 3-6-9 methodology: Creation, Harmony, and Fulfillment.";
+                        } else if (lowerMsg.includes('contact') || lowerMsg.includes('reach') || lowerMsg.includes('talk')) {
+                            response = "You can reach our team via email at info@36nine.ai, by phone at +1 (123) 456-7890, or by filling out the contact form on our website. We'd be happy to discuss how our AI solutions can help your business.";
+                        } else {
+                            response = "Thank you for your message. Our team applies the 3-6-9 principles to all AI solutions we develop. Would you like to know more about our Creation (3), Harmony (6), or Fulfillment (9) approaches?";
+                        }
+                        
+                        // Add AI response
+                        const aiMessage = document.createElement('div');
+                        aiMessage.className = 'chat-message ai-message';
+                        aiMessage.textContent = response;
+                        chatMessages.appendChild(aiMessage);
+                        
+                        // Scroll to bottom
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 1500);
+                }
+                
+                chatSubmit.addEventListener('click', submitMessage);
+                
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        submitMessage();
+                    }
+                });
+                
+                // Auto-open chat after a delay
+                setTimeout(() => {
+                    if (!chatContainer.classList.contains('open')) {
+                        chatContainer.classList.add('open');
+                        chatToggle.classList.remove('fa-chevron-up');
+                        chatToggle.classList.add('fa-chevron-down');
+                    }
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
