@@ -1,30 +1,37 @@
-// Simplified main.js that forces the loading screen to progress
+// Very simplified JavaScript to force loading screen completion
 document.addEventListener('DOMContentLoaded', function() {
-    // Force the loading screen to progress
-    const loadingScreen = document.querySelector('.loading-screen');
-    const loadingProgress = document.querySelectorAll('.loading-progress');
+    console.log("DOM Loaded - Starting loading animation");
     
-    // Simple timer to increment loading percentage
+    // Get loading screen elements
+    const loadingScreen = document.querySelector('.loading-screen');
+    const progressElements = document.querySelectorAll('.loading-progress');
+    
+    console.log("Loading elements found:", loadingScreen ? "Yes" : "No", "Progress elements:", progressElements.length);
+    
+    // Force loading percentage to increase
     let progress = 0;
-    const progressInterval = setInterval(() => {
-        progress += 5;
-        if (progress > 100) progress = 100;
+    const updateInterval = setInterval(function() {
+        progress += 10;
+        console.log("Progress:", progress + "%");
         
-        loadingProgress.forEach(element => {
-            element.textContent = progress + '%';
+        // Update all progress elements
+        progressElements.forEach(function(el) {
+            el.textContent = progress + "%";
         });
         
-        // When progress reaches 100, remove loading screen
-        if (progress === 100) {
-            clearInterval(progressInterval);
-            setTimeout(() => {
-                // Force hide the loading screen
+        // When we reach 100%, hide the loading screen
+        if (progress >= 100) {
+            console.log("Loading complete, hiding loading screen");
+            clearInterval(updateInterval);
+            
+            // Wait a moment then hide the loading screen
+            setTimeout(function() {
                 if (loadingScreen) {
-                    loadingScreen.style.display = 'none';
+                    loadingScreen.style.display = "none";
+                    document.body.style.overflow = "visible";
+                    console.log("Loading screen hidden");
                 }
-                // Make body visible
-                document.body.style.overflow = 'visible';
-            }, 1000);
+            }, 500);
         }
-    }, 100);
+    }, 300);
 });
