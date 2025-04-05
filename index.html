@@ -3,16 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="36nine.ai - Unlocking AI Potential inspired by Tesla's 3, 6, 9 philosophy. We guide your AI journey through Creation, Harmony, and Fulfillment.">
-    <meta name="keywords" content="36nine.ai, artificial intelligence, AI solutions, Tesla philosophy, AI implementation, business AI">
-    <meta property="og:title" content="36nine.ai - Unlocking AI Potential">
-    <meta property="og:description" content="AI solutions inspired by Tesla's 3, 6, 9 philosophy. Transforming businesses through intelligent technology.">
-    <meta property="og:image" content="img/36nine-logo.svg">
+    <meta name="description" content="36nine.ai - Unlocking AI Potential inspired by Tesla's 3, 6, 9 philosophy.">
     <title>36nine.ai - Unlocking AI Potential</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+    
+    <!-- Inline Font Awesome to avoid CDN issues -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    
+    <!-- Inline JavaScript to ensure it runs -->
+    <script>
+        // Force loading screen to complete after page loads
+        window.addEventListener('load', function() {
+            console.log("Window loaded - starting loading animation");
+            
+            // Get loading screen element
+            const loadingScreen = document.querySelector('.loading-screen');
+            const progressElements = document.querySelectorAll('.loading-progress');
+            
+            // Force progress to increase
+            let progress = 0;
+            const updateInterval = setInterval(function() {
+                progress += 10;
+                console.log("Progress: " + progress + "%");
+                
+                // Update all progress elements
+                progressElements.forEach(function(el) {
+                    el.textContent = progress + "%";
+                });
+                
+                // When we reach 100%, hide loading screen
+                if (progress >= 100) {
+                    console.log("Loading complete, hiding loading screen");
+                    clearInterval(updateInterval);
+                    
+                    // Hide loading screen
+                    setTimeout(function() {
+                        loadingScreen.style.display = "none";
+                        document.body.style.overflow = "visible";
+                        console.log("Loading screen hidden");
+                    }, 500);
+                }
+            }, 300);
+            
+            // Custom cursor
+            const cursor = document.querySelector('.cursor');
+            const cursorDot = document.querySelector('.cursor-dot');
+            
+            if (cursor && cursorDot) {
+                document.addEventListener('mousemove', function(e) {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                    
+                    cursorDot.style.left = e.clientX + 'px';
+                    cursorDot.style.top = e.clientY + 'px';
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 80;
+                        
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="cursor"></div>
@@ -148,441 +217,11 @@
         </div>
     </section>
 
-    <!-- Expertise Section -->
-    <section id="expertise" class="expertise-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Expertise</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="expertise-grid">
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Business Intelligence</h3>
-                    <p>Transform data into actionable insights with our AI-powered analytics solutions</p>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-sitemap"></i>
-                    </div>
-                    <h3>AI Strategy Development</h3>
-                    <p>Craft a comprehensive AI roadmap aligned with your business objectives</p>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>AI Implementation</h3>
-                    <p>Seamlessly integrate AI solutions into your existing systems and processes</p>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <h3>Innovation Labs</h3>
-                    <p>Explore cutting-edge AI concepts in our experimental playground</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>About Us</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="about-intro">
-                <h3>Unlocking Potential with 36nine.ai</h3>
-                <p>Welcome to 36nine.ai, where profound inspiration meets the transformative power of Artificial Intelligence. Our name itself is a nod to the genius of Nikola Tesla, who believed the numbers 3, 6, and 9 held a unique significance – "a key to the universe." We see a powerful parallel in the potential of AI to unlock hidden patterns, reveal deeper insights, and shape a more intelligent future.</p>
-            </div>
-            
-            <div class="about-philosophy">
-                <h3>The Philosophy: The Magnificence of 3, 6, and 9 in the Age of AI</h3>
-                <p>Our name and philosophy draw inspiration from Nikola Tesla's fascination with the numbers 3, 6, and 9 – keys, he believed, to understanding the universe. We honor the original essence of these powerful numbers and apply them as guiding principles to the transformative potential of Artificial Intelligence:</p>
-                
-                <div class="about-numbers">
-                    <div class="about-number" data-number="3">
-                        <div class="number-icon">3</div>
-                        <h4>Creation</h4>
-                        <p>This number signifies Creation. For 36nine.ai, this represents the genesis of ideas, the spark of innovation, and the fundamental act of creating new possibilities and solutions using AI. It's where we explore the "what if" and conceptualize groundbreaking applications.</p>
-                    </div>
-                    
-                    <div class="about-number" data-number="6">
-                        <div class="number-icon">6</div>
-                        <h4>Harmony</h4>
-                        <p>This number stands for Harmony. We see this as the crucial stage of bringing elements into balance – integrating complex data, sophisticated algorithms, user needs, and strategic goals. It's about achieving a harmonious implementation where AI solutions work seamlessly and effectively within their intended environment.</p>
-                    </div>
-                    
-                    <div class="about-number" data-number="9">
-                        <div class="number-icon">9</div>
-                        <h4>Completion & Fulfillment</h4>
-                        <p>This number represents Completion and Fulfillment. In our work, this signifies not just finishing a project, but achieving the ultimate goal – the realization of the initial vision, the delivery of impactful results, and the fulfillment of unlocking significant, tangible value and transformation for our clients through AI mastery.</p>
-                    </div>
-                </div>
-                
-                <p>By embracing this framework – moving from Creation (3) through Harmonious Implementation (6) to ultimate Fulfillment (9) – we structure our approach to harnessing the full power of Artificial Intelligence.</p>
-            </div>
-            
-            <div class="about-foundation">
-                <h3>The Visionary Foundation</h3>
-                <p>Fueling 36nine.ai is a foundation built on a unique blend of business insight and technological understanding. Our background includes Business Administration, providing a strong grasp of market needs and strategic objectives, complemented by Management Information Systems (MIS), offering expertise in how technology systems deliver value and drive efficiency.</p>
-                <p>This combination allows us to bridge the gap between business challenges and AI-driven solutions. Our passion lies in:</p>
-                
-                <ul class="foundation-list">
-                    <li><span class="list-icon"><i class="fas fa-check-circle"></i></span> <strong>Understanding Business Needs:</strong> Applying business administration principles to identify where AI can create the most significant impact.</li>
-                    <li><span class="list-icon"><i class="fas fa-check-circle"></i></span> <strong>Leveraging Information Systems:</strong> Utilizing MIS knowledge to design and envision practical, effective AI implementations.</li>
-                    <li><span class="list-icon"><i class="fas fa-check-circle"></i></span> <strong>Driving AI Innovation:</strong> Exploring the cutting edge of Artificial Intelligence to solve real-world problems.</li>
-                    <li><span class="list-icon"><i class="fas fa-check-circle"></i></span> <strong>Strategic Application:</strong> Ensuring AI solutions are not just technically sound but strategically aligned with business goals.</li>
-                </ul>
-                
-                <p>This unique perspective equips us to effectively guide our partners through each essential stage of the AI journey: from AI-driven Creation and Innovation (3), through grounded, practical systems thinking for Harmonious Implementation (6), ultimately reaching transformative results and Fulfillment (9).</p>
-            </div>
-            
-            <div class="about-mission">
-                <h3>Our Mission: Guiding Your AI Journey Through 3, 6, 9</h3>
-                <p>At 36nine.ai, our mission is to be your strategic partner, guiding you on a transformative AI journey structured by the principles of 3, 6, and 9:</p>
-                
-                <div class="mission-steps">
-                    <div class="mission-step">
-                        <div class="step-number">1</div>
-                        <h4>Creation (3)</h4>
-                        <p>We begin here, collaborating closely to identify opportunities, spark innovation, and conceptualize bespoke AI strategies and solutions that address your unique challenges and goals.</p>
-                    </div>
-                    
-                    <div class="mission-step">
-                        <div class="step-number">2</div>
-                        <h4>Harmony (6)</h4>
-                        <p>We then navigate the practicalities, meticulously developing, implementing, and integrating these AI solutions. Our focus is on ensuring seamless function, balance within your existing systems, and harmonious alignment with your operations.</p>
-                    </div>
-                    
-                    <div class="mission-step">
-                        <div class="step-number">3</div>
-                        <h4>Fulfillment (9)</h4>
-                        <p>Finally, we drive towards completion and the ultimate fulfillment of your objectives. We ensure the deployed AI solutions deliver measurable, impactful, and transformative results, unlocking your organization's highest potential.</p>
-                    </div>
-                </div>
-                
-                <p>We leverage our unique blend of business acumen and systems expertise throughout this journey, ensuring the process is clear, effective, and sets new benchmarks for success, truly embodying the power unlocked by 3, 6, and 9.</p>
-                <p>Join us on the journey to explore the intersection of profound principles and intelligent technology. Discover the potential waiting to be unlocked with 36nine.ai.</p>
-                
-                <div class="mission-cta">
-                    <a href="#playground" class="btn primary-btn">Explore Our Playground</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Playground Section -->
-    <section id="playground" class="playground-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>AI Playground</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="playground-intro">
-                <p>Experience the power of our AI solutions in this interactive playground. Explore how our technology can transform your business through the principles of Creation (3), Harmony (6), and Fulfillment (9).</p>
-            </div>
-            
-            <div class="terminal-container">
-                <div class="terminal-window">
-                    <div class="terminal-header">
-                        <div class="terminal-button"></div>
-                        <div class="terminal-button"></div>
-                        <div class="terminal-button"></div>
-                        <div class="terminal-title">36nine.ai - Terminal</div>
-                    </div>
-                    <div class="terminal-body">
-                        <div class="line">$ Welcome to 36nine.ai - Playground v1.0</div>
-                        <div class="line">$</div>
-                        <div class="line">$ Initializing AI systems...</div>
-                        <div class="line">$ Loading neural networks: Complete</div>
-                        <div class="line">$ Ready for interaction</div>
-                        <div class="line">$</div>
-                        <div class="line input-line">$ <span class="cursor-terminal">_</span></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="playground-features">
-                <h3>Playground Features:</h3>
-                <ul>
-                    <li><span class="feature-icon"><i class="fas fa-brain"></i></span> AI-powered business intelligence demo</li>
-                    <li><span class="feature-icon"><i class="fas fa-chart-pie"></i></span> Predictive analytics visualization</li>
-                    <li><span class="feature-icon"><i class="fas fa-comment-alt"></i></span> Natural language processing tools</li>
-                    <li><span class="feature-icon"><i class="fas fa-code"></i></span> Custom AI model testing environment</li>
-                </ul>
-                <p class="coming-soon">Coming soon: Interactive demos showcasing the power of 3, 6, 9 methodology in AI applications.</p>
-            </div>
-            
-            <div class="playground-cta">
-                <a href="#" class="btn primary-btn">Launch Playground</a>
-                <p class="login-required">* Requires member login</p>
-            </div>
-            
-            <div class="playground-options">
-                <div class="option-card">
-                    <div class="option-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Developer API</h3>
-                    <p>Access our AI capabilities through a robust, well-documented API. Build custom applications that leverage our 3, 6, 9 methodology.</p>
-                    <a href="#" class="btn secondary-btn">View Documentation</a>
-                </div>
-                
-                <div class="option-card">
-                    <div class="option-icon">
-                        <i class="fas fa-box-open"></i>
-                    </div>
-                    <h3>Sandbox Environment</h3>
-                    <p>Experiment with our AI models in a secure sandbox environment. Test how our solutions can tackle your specific business challenges.</p>
-                    <a href="#" class="btn secondary-btn">Access Sandbox</a>
-                </div>
-            </div>
-            
-            <div class="playground-banner">
-                <h3>Ready to Experience the Power of 3, 6, 9?</h3>
-                <p>Join our community of innovators and gain full access to our AI playground and tools.</p>
-                <a href="#login" class="btn primary-btn">Become a Member</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- News Section -->
-    <section id="news" class="news-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Latest News</h2>
-                <div class="section-line"></div>
-            </div>
-            
-            <div class="news-grid">
-                <article class="news-card">
-                    <div class="news-image">
-                        <img src="https://via.placeholder.com/600x400/050a14/00d4ff?text=AI+Technology" alt="AI Technology Breakthrough">
-                        <div class="news-date">
-                            <span class="day">15</span>
-                            <span class="month">MAR</span>
-                        </div>
-                    </div>
-                    <div class="news-content">
-                        <h3>36nine.ai Launches Revolutionary AI Pattern Recognition System</h3>
-                        <p class="news-excerpt">Our new pattern recognition system demonstrates unprecedented accuracy in identifying complex data relationships, powered by our 3-6-9 methodology.</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-                
-                <article class="news-card">
-                    <div class="news-image">
-                        <img src="https://via.placeholder.com/600x400/050a14/00d4ff?text=AI+Conference" alt="AI Business Conference">
-                        <div class="news-date">
-                            <span class="day">28</span>
-                            <span class="month">FEB</span>
-                        </div>
-                    </div>
-                    <div class="news-content">
-                        <h3>36nine.ai to Present at Global AI Summit 2025</h3>
-                        <p class="news-excerpt">Our founders will showcase how the principles of 3, 6, and 9 are revolutionizing business intelligence and predictive analytics.</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-                
-                <article class="news-card">
-                    <div class="news-image">
-                        <img src="https://via.placeholder.com/600x400/050a14/00d4ff?text=AI+Partnership" alt="AI Partnership">
-                        <div class="news-date">
-                            <span class="day">10</span>
-                            <span class="month">JAN</span>
-                        </div>
-                    </div>
-                    <div class="news-content">
-                        <h3>36nine.ai Announces Strategic Partnership with TechCorp Industries</h3>
-                        <p class="news-excerpt">This collaboration will bring our AI solutions to manufacturing sectors, optimizing production through harmonious implementation.</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-            </div>
-            
-            <div class="news-letter">
-                <h3>Stay Updated with 36nine.ai</h3>
-                <p>Subscribe to our newsletter to receive the latest news, insights, and updates on our AI solutions.</p>
-                
-                <form class="newsletter-form">
-                    <div class="form-group">
-                        <input type="email" placeholder="Enter your email address" required>
-                        <button type="submit" class="btn primary-btn">Subscribe</button>
-                    </div>
-                    <p class="privacy-note">We respect your privacy. Unsubscribe at any time.</p>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Contact Us</h2>
-                <div class="section-line"></div>
-            </div>
-            
-            <div class="contact-intro">
-                <p>Ready to unlock your AI potential? We're here to guide you through your 3-6-9 journey. Reach out to start the conversation.</p>
-            </div>
-            
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <h3>Our Location</h3>
-                        <p>1234 Innovation Drive<br>Tech District, CA 94107<br>United States</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3>Email Us</h3>
-                        <p>info@36nine.ai<br>support@36nine.ai</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <h3>Call Us</h3>
-                        <p>+1 (555) 369-3690<br>Monday-Friday: 9am-6pm PST</p>
-                    </div>
-                    
-                    <div class="social-links">
-                        <h3>Connect With Us</h3>
-                        <div class="social-icons">
-                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form-container">
-                    <div class="terminal-window">
-                        <div class="terminal-header">
-                            <div class="terminal-button"></div>
-                            <div class="terminal-button"></div>
-                            <div class="terminal-button"></div>
-                            <div class="terminal-title">Contact Form</div>
-                        </div>
-                        <div class="terminal-body">
-                            <form id="contactForm" class="contact-form">
-                                <div class="form-group">
-                                    <label for="name">$ name:</label>
-                                    <input type="text" id="name" name="name" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="email">$ email:</label>
-                                    <input type="email" id="email" name="email" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="subject">$ subject:</label>
-                                    <input type="text" id="subject" name="subject" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="message">$ message:</label>
-                                    <textarea id="message" name="message" rows="5" required></textarea>
-                                </div>
-                                
-                                <button type="submit" class="btn primary-btn">$ send_message</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Login Section -->
-    <section id="login" class="login-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Member Login</h2>
-                <div class="section-line"></div>
-            </div>
-            
-            <div class="login-container">
-                <div class="terminal-window">
-                    <div class="terminal-header">
-                        <div class="terminal-button"></div>
-                        <div class="terminal-button"></div>
-                        <div class="terminal-button"></div>
-                        <div class="terminal-title">Secure Login</div>
-                    </div>
-                    <div class="terminal-body">
-                        <div class="line">$ Welcome to 36nine.ai Member Portal</div>
-                        <div class="line">$ Secure login protected with 256-bit encryption</div>
-                        <div class="line">$ Please authenticate to proceed:</div>
-                        <div class="line">$</div>
-                        
-                        <form id="loginForm" class="login-form">
-                            <div class="form-group">
-                                <label for="username">$ username:</label>
-                                <input type="text" id="username" name="username" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="password">$ password:</label>
-                                <input type="password" id="password" name="password" required>
-                            </div>
-                            
-                            <div class="form-checkbox">
-                                <input type="checkbox" id="remember" name="remember">
-                                <label for="remember">Remember me</label>
-                            </div>
-                            
-                            <button type="submit" class="btn primary-btn">$ authenticate</button>
-                            
-                            <div class="login-options">
-                                <a href="#" class="forgot-password">Forgot Password?</a>
-                                <a href="#" class="create-account">Create Account</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Chat Widget -->
-    <div class="ai-chat-widget">
-        <div class="chat-toggle">
-            <i class="fas fa-comment-dots"></i>
-            <span class="notification-dot"></span>
-        </div>
-        <div class="chat-container">
-            <div class="chat-header">
-                <img src="img/36nine-logo-small.svg" alt="36nine.ai" class="chat-logo">
-                <h3>36nine.ai Assistant</h3>
-                <div class="chat-close"><i class="fas fa-times"></i></div>
-            </div>
-            <div class="chat-messages">
-                <div class="message bot">
-                    <div class="message-content">Hello! I'm your 36nine.ai assistant. How can I help you unlock your AI potential today?</div>
-                </div>
-            </div>
-            <div class="chat-input">
-                <input type="text" placeholder="Type your message here...">
-                <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer Section -->
+    <!-- Footer Section - Simplified for this fix -->
     <footer>
+        <div class="container">
+            <p>© 2025 36nine.ai - Unlocking AI Potential</p>
+        </div>
+    </footer>
+</body>
+</html>
