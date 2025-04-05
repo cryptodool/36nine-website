@@ -1,0 +1,12 @@
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .text { font-family: 'JetBrains Mono', monospace; font-weight: bold; font-size: 14px; }
+    .glow { filter: drop-shadow(0 0 5px #00d4ff); }
+    .circuit { stroke: #00d4ff; stroke-width: 1; fill: none; }
+  </style>
+  <g class="glow">
+    <text x="5" y="23" fill="#00d4ff" class="text">36</text>
+    <path class="circuit" d="M 5,30 L 35,30 L 35,10 L 5,10 L 5,30" />
+    <path class="circuit" d="M 10,5 L 30,5 L 30,15 M 20,25 L 20,35" />
+  </g>
+</svg>
