@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Playground - 36nine.ai</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Playground specific styles */
+        .playground-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: #fff;
+        }
+        
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-section h1 {
+            color: #00c3ff;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
+        }
+        
+        .hero-section p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #cccccc;
+        }
+        
+        .demos-heading {
+            color: #00c3ff;
+            text-align: center;
+            margin: 3rem 0 2rem;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(0, 195, 255, 0.3);
+        }
+        
+        .demos-description {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: #cccccc;
+        }
+        
+        .demo-card {
+            background-color: rgba(14, 28, 46, 0.8);
+            border: 1px solid #1e3a5f;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(0, 195, 255, 0.1);
+        }
+        
+        .demo-card h3 {
+            color: #00c3ff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .demo-card p {
+            color: #cccccc;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .demo-container {
+            min-height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(9, 20, 33, 0.5);
+            border-radius: 4px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .coming-soon-card {
+            background-color: rgba(14, 28, 46, 0.8);
+            border: 1px solid #1e3a5f;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .coming-soon-card h3 {
+            color: #00c3ff;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .features-list {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .features-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+            color: #cccccc;
+        }
+        
+        .features-list li:before {
+            content: "•";
+            color: #00c3ff;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <a href="index.html">36nine<span>.ai</span></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="playground.html" class="active">Playground</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="login-button">
+            <a href="#login">LOGIN</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="playground-container">
+            <section class="hero-section">
+                <h1>AI Playground</h1>
+                <p>Experience the power of our AI solutions in this interactive playground. Explore how our technology can transform your business through the principles of Creation (3), Harmony (6), and Fulfillment (9).</p>
+            </section>
+
+            <h2 class="demos-heading">Interactive Demos</h2>
+            <p class="demos-description">Try out our AI-powered solutions and see the 3, 6, 9 methodology in action.</p>
+
+            <!-- Demo Eton Institute Section -->
+            <section class="demo-card">
+                <h3>Demo Eton Institute</h3>
+                <p>Experience our advanced conversational AI platform designed for Eton Institute.</p>
+                <div class="demo-container">
+                    <!-- Elevenlabs Convai Widget -->
+                    <elevenlabs-convai agent-id="Cz1mATuJBD3obKqr1xEy"></elevenlabs-convai>
+                </div>
+            </section>
+
+            <!-- Coming Soon Section -->
+            <section class="coming-soon-card">
+                <h3>More Coming Soon</h3>
+                <div class="features-list">
+                    <ul>
+                        <li>AI-powered business intelligence demo</li>
+                        <li>Predictive analytics visualization</li>
+                        <li>Natural language processing tools</li>
+                        <li>Custom AI model testing environment</li>
+                    </ul>
+                </div>
+                <p style="text-align:center; color:#cccccc; margin-top:1.5rem;">Coming soon: Interactive demos showcasing the power of 3, 6, 9 methodology in AI applications.</p>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span>36nine</span>.ai
+            </div>
+            <div class="footer-copyright">
+                &copy; 2024 36nine.ai. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Elevenlabs Convai Widget Script -->
+    <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+</body>
+</html>
