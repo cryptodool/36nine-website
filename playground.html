@@ -3,72 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="36nine.ai Playground - Experience our AI solutions and demos including the Eton Institute conversational agent">
+    <meta name="keywords" content="AI, artificial intelligence, Tesla, 3 6 9, AI playground, demo, Eton Institute">
+    <meta name="author" content="36nine.ai">
+    <meta property="og:title" content="36nine.ai - AI Playground">
+    <meta property="og:description" content="Experience our AI solutions and interactive demos featuring our 3, 6, 9 methodology.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://36nine.ai/playground">
     <title>AI Playground - 36nine.ai</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@firacode/webfont@6.2.0/distr/fira_code.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <style>
-        /* Playground specific styles */
-        .playground-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+        /* Custom Styles */
+        :root {
+            --primary-neon: #00ffff;
+            --primary-blue: #0099ff;
+            --dark-blue: #001220;
+            --darker-blue: #000a14;
+            --circuit-color: rgba(0, 255, 255, 0.2);
+        }
+        
+        /* Base Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--darker-blue);
+            color: #ffffff;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+        }
+        
+        /* Neon Effect */
+        .neon-text {
             color: #fff;
+            text-shadow: 0 0 5px var(--primary-neon), 
+                         0 0 10px var(--primary-neon),
+                         0 0 20px var(--primary-blue), 
+                         0 0 30px var(--primary-blue);
         }
         
-        .hero-section {
+        .neon-box {
+            box-shadow: 0 0 5px var(--primary-neon), 
+                       0 0 10px var(--primary-neon),
+                       0 0 20px var(--primary-blue), 
+                       inset 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        
+        /* Circuit Background */
+        .circuit-background {
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .circuit-background::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25px 25px, var(--circuit-color) 2px, transparent 0),
+                linear-gradient(to right, var(--circuit-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--circuit-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: -25px -25px;
+            z-index: -1;
+            opacity: 0.15;
+        }
+        
+        /* Terminal Effect */
+        .terminal {
+            background-color: rgba(0, 10, 20, 0.8);
+            border: 1px solid var(--primary-blue);
+            border-radius: 5px;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .terminal::before {
+            content: "$ ";
+            color: var(--primary-neon);
+        }
+        
+        .terminal-input {
+            background-color: rgba(0, 10, 20, 0.8);
+            border: 1px solid var(--primary-blue);
+            color: white;
+            font-family: 'Fira Code', monospace;
+            padding: 10px;
+            width: 100%;
+            outline: none;
+        }
+        
+        .terminal-input:focus {
+            box-shadow: 0 0 5px var(--primary-neon);
+        }
+        
+        /* Button Styles */
+        .btn-neon {
+            background-color: transparent;
+            border: 1px solid var(--primary-neon);
+            color: var(--primary-neon);
+            padding: 10px 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-neon:hover {
+            color: var(--darker-blue);
+        }
+        
+        .btn-neon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-neon);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn-neon:hover::before {
+            left: 0;
+        }
+        
+        /* Logo Animation */
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+        
+        .logo-pulse {
+            animation: pulse 3s infinite;
+        }
+        
+        /* Number Highlight */
+        .number-highlight {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
             text-align: center;
-            margin-bottom: 3rem;
-            padding-top: 5rem;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+            color: white;
+            margin-right: 10px;
+            font-weight: bold;
         }
         
-        .hero-section h1 {
-            color: #00c3ff;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
+        /* Navigation Active State */
+        .nav-active {
+            color: var(--primary-neon);
+            border-bottom: 2px solid var(--primary-neon);
         }
         
-        .hero-section p {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.2rem;
-            color: #cccccc;
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 20px;
+            }
+            
+            #mobile-menu {
+                display: block;
+            }
+            
+            #desktop-menu {
+                display: none;
+            }
+            
+            .mobile-nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--dark-blue);
+                padding: 20px;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+            }
+            
+            .mobile-nav.open {
+                transform: translateY(0);
+            }
         }
-        
-        .demos-heading {
-            color: #00c3ff;
-            text-align: center;
-            margin: 3rem 0 2rem;
-            font-size: 2rem;
-            text-shadow: 0 0 10px rgba(0, 195, 255, 0.3);
-        }
-        
-        .demos-description {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            color: #cccccc;
-        }
-        
-        .demo-card {
-            background-color: rgba(14, 28, 46, 0.8);
-            border: 1px solid #1e3a5f;
+
+        /* Demo section styles */
+        .demo-section {
+            background-color: rgba(0, 18, 32, 0.7);
+            border: 1px solid var(--primary-blue);
             border-radius: 8px;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 0 20px rgba(0, 195, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 153, 255, 0.2);
+            transition: all 0.3s ease;
         }
         
-        .demo-card h3 {
-            color: #00c3ff;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .demo-card p {
-            color: #cccccc;
-            margin-bottom: 1.5rem;
-            text-align: center;
+        .demo-section:hover {
+            box-shadow: 0 0 25px rgba(0, 153, 255, 0.3);
         }
         
         .demo-container {
@@ -76,119 +228,403 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(9, 20, 33, 0.5);
-            border-radius: 4px;
+            background-color: rgba(0, 10, 20, 0.5);
+            border-radius: 8px;
             padding: 1rem;
             margin-top: 1.5rem;
+            position: relative;
         }
         
-        .coming-soon-card {
-            background-color: rgba(14, 28, 46, 0.8);
-            border: 1px solid #1e3a5f;
+        .coming-soon {
+            background-color: rgba(0, 18, 32, 0.5);
+            border: 1px solid var(--primary-blue);
             border-radius: 8px;
             padding: 2rem;
-            margin-top: 3rem;
         }
         
-        .coming-soon-card h3 {
-            color: #00c3ff;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .features-list {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .features-list ul {
+        .feature-list {
             list-style-type: none;
-            padding: 0;
+            padding-left: 0;
         }
         
-        .features-list li {
+        .feature-list li {
             padding: 0.5rem 0;
-            position: relative;
-            padding-left: 1.5rem;
-            color: #cccccc;
+            display: flex;
+            align-items: center;
         }
         
-        .features-list li:before {
+        .feature-list li::before {
             content: "•";
-            color: #00c3ff;
-            position: absolute;
-            left: 0;
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Chat Interface */
+        #chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 450px;
+            background-color: rgba(0, 18, 32, 0.9);
+            border: 1px solid var(--primary-blue);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            transform: translateY(410px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 153, 255, 0.5);
+        }
+        
+        #chat-container.open {
+            transform: translateY(0);
+        }
+        
+        #chat-header {
+            padding: 10px 15px;
+            background-color: rgba(0, 153, 255, 0.2);
+            border-bottom: 1px solid var(--primary-blue);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        
+        .chat-message {
+            margin-bottom: 10px;
+            max-width: 80%;
+            padding: 8px 12px;
+            border-radius: 15px;
+        }
+        
+        .user-message {
+            background-color: rgba(0, 153, 255, 0.3);
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+        
+        .ai-message {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 153, 255, 0.3);
+            margin-right: auto;
+            border-bottom-left-radius: 0;
+        }
+        
+        #chat-input-container {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid var(--primary-blue);
+        }
+        
+        #chat-input {
+            flex-grow: 1;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 15px;
+            padding: 8px 15px;
+            color: white;
+            outline: none;
+        }
+        
+        #chat-submit {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Typing animation for chat */
+        .typing-indicator {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .typing-indicator span {
+            height: 5px;
+            width: 5px;
+            margin: 0 1px;
+            background-color: var(--primary-neon);
+            display: block;
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        .typing-indicator span:nth-of-type(1) {
+            animation: typing 1s infinite;
+        }
+
+        .typing-indicator span:nth-of-type(2) {
+            animation: typing 1s 0.33s infinite;
+        }
+
+        .typing-indicator span:nth-of-type(3) {
+            animation: typing 1s 0.66s infinite;
+        }
+
+        @keyframes typing {
+            0%, 100% {
+                opacity: 0.4;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Hide scrollbar but allow scrolling */
+        .clean-scroll::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+
+        .clean-scroll {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <a href="index.html">36nine<span>.ai</span></a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="playground.html" class="active">Playground</a></li>
-                <li><a href="news.html">News</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="login-button">
-            <a href="#login">LOGIN</a>
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 w-full bg-opacity-90 bg-black z-50 shadow-md border-b border-blue-500">
+        <div class="container mx-auto px-4 py-3">
+            <nav class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center">
+                    <div class="logo-pulse neon-text text-3xl font-bold mr-2">36nine</div>
+                    <span class="text-blue-400">.ai</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div id="desktop-menu" class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link py-2 hover:text-blue-400 transition-all">Home</a>
+                    <a href="index.html#about" class="nav-link py-2 hover:text-blue-400 transition-all">About</a>
+                    <a href="playground.html" class="nav-link py-2 hover:text-blue-400 transition-all nav-active">Playground</a>
+                    <a href="index.html#news" class="nav-link py-2 hover:text-blue-400 transition-all">News</a>
+                    <a href="index.html#contact" class="nav-link py-2 hover:text-blue-400 transition-all">Contact</a>
+                    <a href="index.html#login" class="btn-neon py-1 px-4 rounded">LOGIN</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </nav>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-nav" class="mobile-nav md:hidden">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="mobile-nav-link py-2 hover:text-blue-400 transition-all">Home</a>
+                    <a href="index.html#about" class="mobile-nav-link py-2 hover:text-blue-400 transition-all">About</a>
+                    <a href="playground.html" class="mobile-nav-link py-2 hover:text-blue-400 transition-all nav-active">Playground</a>
+                    <a href="index.html#news" class="mobile-nav-link py-2 hover:text-blue-400 transition-all">News</a>
+                    <a href="index.html#contact" class="mobile-nav-link py-2 hover:text-blue-400 transition-all">Contact</a>
+                    <a href="index.html#login" class="btn-neon py-2 px-4 rounded text-center">LOGIN</a>
+                </div>
+            </div>
         </div>
     </header>
 
+    <!-- Main Content -->
     <main>
-        <div class="playground-container">
-            <section class="hero-section">
-                <h1>AI Playground</h1>
-                <p>Experience the power of our AI solutions in this interactive playground. Explore how our technology can transform your business through the principles of Creation (3), Harmony (6), and Fulfillment (9).</p>
-            </section>
-
-            <h2 class="demos-heading">Interactive Demos</h2>
-            <p class="demos-description">Try out our AI-powered solutions and see the 3, 6, 9 methodology in action.</p>
-
-            <!-- Demo Eton Institute Section -->
-            <section class="demo-card">
-                <h3>Demo Eton Institute</h3>
-                <p>Experience our advanced conversational AI platform designed for Eton Institute.</p>
-                <div class="demo-container">
-                    <!-- Elevenlabs Convai Widget -->
-                    <elevenlabs-convai agent-id="Cz1mATuJBD3obKqr1xEy"></elevenlabs-convai>
+        <!-- Playground Section -->
+        <section id="playground" class="min-h-screen pt-24 pb-20 circuit-background">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h1 class="text-4xl md:text-5xl font-bold neon-text mb-4 animate__animated animate__fadeInUp">AI Playground</h1>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto animate__animated animate__fadeInUp animate__delay-1s">
+                        Experience the power of our AI solutions in this interactive playground. Explore how our technology 
+                        can transform your business through the principles of Creation (3), Harmony (6), and Fulfillment (9).
+                    </p>
                 </div>
-            </section>
-
-            <!-- Coming Soon Section -->
-            <section class="coming-soon-card">
-                <h3>More Coming Soon</h3>
-                <div class="features-list">
-                    <ul>
-                        <li>AI-powered business intelligence demo</li>
-                        <li>Predictive analytics visualization</li>
-                        <li>Natural language processing tools</li>
-                        <li>Custom AI model testing environment</li>
+                
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-blue-400 mb-4">Interactive Demos</h2>
+                    <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                        Try out our AI-powered solutions and see the 3, 6, 9 methodology in action.
+                    </p>
+                </div>
+                
+                <!-- Demo Eton Institute Section -->
+                <div class="demo-section animate__animated animate__fadeIn">
+                    <h3 class="text-2xl font-bold text-center text-blue-400 mb-2">Demo Eton Institute</h3>
+                    <p class="text-center text-gray-300 mb-6">
+                        Experience our advanced conversational AI platform designed for Eton Institute.
+                    </p>
+                    <div class="demo-container">
+                        <!-- Elevenlabs Convai Widget -->
+                        <elevenlabs-convai agent-id="Cz1mATuJBD3obKqr1xEy"></elevenlabs-convai>
+                    </div>
+                </div>
+                
+                <!-- Coming Soon Section -->
+                <div class="coming-soon animate__animated animate__fadeIn animate__delay-1s">
+                    <h3 class="text-2xl font-bold text-center text-blue-400 mb-6">More Coming Soon</h3>
+                    <div class="max-w-2xl mx-auto">
+                        <ul class="feature-list space-y-2">
+                            <li class="text-gray-300">AI-powered business intelligence demo</li>
+                            <li class="text-gray-300">Predictive analytics visualization</li>
+                            <li class="text-gray-300">Natural language processing tools</li>
+                            <li class="text-gray-300">Custom AI model testing environment</li>
+                        </ul>
+                        <p class="text-center text-gray-400 mt-8 italic">
+                            Coming soon: Interactive demos showcasing the power of 3, 6, 9 methodology in AI applications.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-16 text-center">
+                    <a href="index.html" class="btn-neon py-3 px-8 rounded-lg text-lg">Return to Home</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="py-12 bg-black border-t border-blue-900">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="logo-pulse neon-text text-3xl font-bold mb-4 flex items-center">
+                        36nine<span class="text-blue-400 ml-1">.ai</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Unlocking AI potential through the principles of 3, 6, and 9.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-all">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-all">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-all">
+                            <i class="fab fa-medium"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-blue-400 transition-all">Home</a></li>
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-blue-400 transition-all">About Us</a></li>
+                        <li><a href="playground.html" class="text-gray-400 hover:text-blue-400 transition-all">AI Playground</a></li>
+                        <li><a href="index.html#news" class="text-gray-400 hover:text-blue-400 transition-all">News</a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-blue-400 transition-all">Contact Us</a></li>
                     </ul>
                 </div>
-                <p style="text-align:center; color:#cccccc; margin-top:1.5rem;">Coming soon: Interactive demos showcasing the power of 3, 6, 9 methodology in AI applications.</p>
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <span>36nine</span>.ai
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-all">API Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-all">Case Studies</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-all">White Papers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-all">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Info</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <span class="mr-2 text-blue-400 mt-1"><i class="fas fa-map-marker-alt"></i></span>
+                            <span class="text-gray-400">
+                                123 Tech Innovation Drive<br>
+                                Suite 369<br>
+                                San Francisco, CA 94107
+                            </span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-blue-400"><i class="fas fa-phone"></i></span>
+                            <a href="tel:+11234567890" class="text-gray-400 hover:text-blue-400 transition-all">+1 (123) 456-7890</a>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-blue-400"><i class="fas fa-envelope"></i></span>
+                            <a href="mailto:info@36nine.ai" class="text-gray-400 hover:text-blue-400 transition-all">info@36nine.ai</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-copyright">
-                &copy; 2025 36nine.ai. All rights reserved.
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 mb-4 md:mb-0">
+                    &copy; 2025 36nine.ai. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-blue-400 transition-all">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-blue-400 transition-all">Terms of Service</a>
+                    <a href="index.html#sitemap" class="text-gray-500 hover:text-blue-400 transition-all">Sitemap</a>
+                </div>
             </div>
         </div>
     </footer>
-
+    
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileNav = document.getElementById('mobile-nav');
+            
+            if (mobileMenuBtn && mobileNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileNav.classList.toggle('open');
+                    mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+                    mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+                });
+            }
+            
+            // Smooth Scrolling for Navigation Links
+            const allNavLinks = document.querySelectorAll('a[href^="#"]');
+            
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') !== '#') {
+                        e.preventDefault();
+                        
+                        const targetId = this.getAttribute('href');
+                        if (targetId.includes('#')) {
+                            const targetSection = document.querySelector(targetId.split('#')[1]);
+                            
+                            if (targetSection) {
+                                window.scrollTo({
+                                    top: targetSection.offsetTop,
+                                    behavior: 'smooth'
+                                });
+                                
+                                // Close mobile menu if open
+                                if (mobileNav && mobileNav.classList.contains('open')) {
+                                    mobileNav.classList.remove('open');
+                                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                                    mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    
     <!-- Elevenlabs Convai Widget Script -->
     <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
 </body>
